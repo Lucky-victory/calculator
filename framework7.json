@@ -1,0 +1,18 @@
+{
+  "cwd": "C:\\Users\\lucky\\my-opensource\\calculator",
+  "type": [
+    "web"
+  ],
+  "name": "caculator",
+  "framework": "react",
+  "template": "blank",
+  "cssPreProcessor": "scss",
+  "bundler": "vite",
+  "theming": {
+    "customColor": true,
+    "color": "#235ef6",
+    "darkMode": false,
+    "iconFonts": true
+  },
+  "customBuild": false
+}
