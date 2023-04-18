@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
-import { Button as F7Button } from "framework7-react";
+import { CalculatorContext } from "../context/calculator";
 
-export const Button = (props) => {
+const Button = (props) => {
+  const { state, updateState } = useContext(CalculatorContext);
+  const handleClick = (evt) => {
+    const { value } = evt.currentTarget;
+    state.inputRef.current?.focus();
+    console.log({ st: state.caretPosition });
+    updateState((prevState) => ({
+      ...prevState,
+      currentValue: prevState.currentValue + value,
+    }));
+  };
   return (
     <>
-      <F7Button type="button" value={props.value}>
-        {props.value}
-      </F7Button>
+      <div className="grid-box">
+        <button className="btn" value={props.value} onClick={handleClick}>
+          {props.value}
+        </button>
+      </div>
     </>
   );
 };
@@ -16,3 +28,4 @@ Button.propTypes = {
   value: PropTypes.string.isRequired,
   extraClassName: PropTypes.string,
 };
+export default Button;

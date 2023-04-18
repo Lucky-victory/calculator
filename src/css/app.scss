@@ -1,1 +1,153 @@
-/* Your app custom styles here */
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html {
+  font-size: 67.5%;
+}
+body {
+  font-size: 16px;
+}
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.btns-container {
+  margin-top: auto;
+}
+.wrapper {
+  flex: 1;
+}
+button {
+  font-size: 1.6rem;
+  font-family: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+button:disabled {
+  cursor: default;
+}
+.flex {
+  display: flex;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  grid-gap: 1rem;
+  padding: 1rem;
+  padding-right: 0;
+}
+.grid-box {
+  background: #fff;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  box-shadow: 0 5px 12px #0002;
+}
+.btn {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  height: 100%;
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rounded {
+  border-radius: 50%;
+}
+.operators-container {
+  display: grid;
+  grid-gap: 1rem;
+  /* padding: 1rem; */
+  grid-template-rows: repeat(3, 70px);
+  grid-template-columns: auto;
+}
+.operators-container .btn {
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+}
+.equal-btn-box {
+  background: #235ef6;
+  border-radius: 50px;
+  grid-row: span 2;
+  height: auto;
+}
+.top-operators-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(6rem, 1fr));
+  grid-gap: 1rem;
+  padding: 1rem;
+  padding-right: 0;
+  padding-bottom: 0;
+}
+
+.input-container {
+  padding: 1.5rem;
+  min-height: 100px;
+
+  display: flex;
+  flex-direction: column;
+}
+.input-container .input {
+  height: 70px;
+  background: #0006;
+  /* display: block; */
+  width: 100%;
+  font-family: inherit;
+  padding: 1rem;
+  /* padding-bottom: 0.5rem; */
+  /* white-space: nowrap; */
+  font-size: 6rem;
+  font-weight: 400;
+
+  border: none;
+  outline: none;
+  caret-color: green;
+  text-align: right;
+  /* padding-right: 1rem; */
+}
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+.input-wrapper .indicator {
+  position: absolute;
+  height: 100%;
+  width: 3px;
+  top: 0;
+  right: 0;
+  background: #000;
+  border-radius: 25px;
+  animation: blink 1s infinite;
+}
+.output {
+  text-align: right;
+  font-size: 2.5rem;
+  color: #7f8084;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
