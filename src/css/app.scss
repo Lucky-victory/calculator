@@ -7,17 +7,20 @@
 }
 html {
   font-size: 67.5%;
+  --btn-w:6rem
 }
 body {
   font-size: 16px;
 }
 .container {
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   background: lightblue;
   max-width: 450px;
-  margin:0 auto
+  margin:0 auto;
+  width: 100%;
+  overflow:hidden
 }
 
 
@@ -43,21 +46,27 @@ button:disabled {
   display: flex;
   flex-direction: column;
 }
+.wrapper{
+display: flex;
+flex:1;
+margin-top: 1rem;
+align-items:flex-end
+}
 .grid {
   display: grid;
-  grid-template-columns:repeat(3,80px);
-  grid-template-rows: repeat(5,8rem);
+  grid-template-columns:repeat(3,var(--btn-w,6rem));
+  grid-template-rows: repeat(5,var(--btn-w,6rem));
   grid-gap: 1.5rem;
   padding: 1rem;
   padding-right: 1rem;
-  
+  flex:1;
   background: lightcoral;
 }
 .grid-box {
   background: #fff;
   border-radius: 5%;
   //width: 50px;
-height: 80px;
+height: var(--btn-w,8rem);
 
   box-shadow: 0 5px 12px #0003;
 }
@@ -70,8 +79,8 @@ height: 80px;
   width: 100%;
   padding: 0.5rem;
   height: 100%;
-  font-weight: 600;
-  font-size: 2rem;
+  font-weight: 500;
+  font-size: 3rem;
   line-height: 100%;
   display: flex;
   align-items: center;
@@ -83,12 +92,12 @@ height: 80px;
 .operators-container {
  display: grid;
 
-  grid-template-rows: repeat(4,80px);
+  grid-template-rows: repeat(4,var(--btn-w,6rem));
   grid-template-rows:auto ;
+  flex:1;
   flex-shrink: 0;
   gap: 1.5rem;
-   padding: 1rem 1.5rem;
-  flex:1;
+  padding: 1rem 1.5rem;
   padding-top: 1.25rem;
 
  // background: lightgreen
@@ -96,7 +105,7 @@ height: 80px;
 
 .top-operators-container {
   display: grid;
-  grid-template-columns: repeat(3,80px);
+  grid-template-columns: repeat(3,6rem);
   flex-shrink: 0;
   grid-gap: 1.5rem;
   padding: 1rem;
@@ -106,9 +115,9 @@ height: 80px;
 }
 
 .input-container {
-  padding: 1.5rem;
+  padding: 1rem;
   min-height: 100px;
-
+align-items:flex-end;
   display: flex;
   flex-direction: column;
 }
@@ -119,9 +128,8 @@ height: 80px;
   width: 100%;
   font-family: inherit;
   padding: 0.5rem;
-  /* padding-bottom: 0.5rem; */
-  /* white-space: nowrap; */
-  font-size: 8rem;
+  
+  font-size:6.5rem;
   font-weight: 400;
 
   border: none;
@@ -146,7 +154,7 @@ height: 80px;
 }
 .output {
   text-align: right;
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   color: #7f8084;
 }
 

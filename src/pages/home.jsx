@@ -65,7 +65,7 @@ const HomePage = () => {
     console.log({ val: state.currentValue });
     let output=0;
     const lastChar = state.currentValue[state.currentValue.length - 1];
-    if (isNaN(lastChar) && state.isOpenParen) return;
+    if (isNaN(lastChar) /*&& state.isOpenParen*/) return;
     //output = math.evaluate(state.currentValue);
     updateState((prevState) => ({ ...prevState, outputResult: output }));
   }, [state.currentValue]);
@@ -95,7 +95,7 @@ const HomePage = () => {
             </output>
           </div>
           
-            <div className="flex">
+            <div className="flex wrapper">
             <div className="flex-col">
 
            {/*<div className="top-operators-container">
