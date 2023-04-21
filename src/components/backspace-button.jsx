@@ -7,18 +7,15 @@ const BackspaceButton = (props) => {
   const [currentValue, setCurrentValue] = useState(state.currentValue);
   const isOpenBracket = useCheckIsOpenParen(currentValue);
 
-  const handleClick = () => {
-    const valuesToArray = state.currentValue.split("");
-
-    console.log({ valuesToArray });
-    valuesToArray.splice(state.caretPos - 1, 1);
-    const updatedValue = valuesToArray.join("");
+  const handleClick = ()=>{
+    //const updatedValue = currentValue.slice(0, currentValue.length - 1) + currentValue.slice(currentValue.length);
+    setCurrentValue((prev)=>prev.slice(0,prev.length -1)+prev.slice(prev.length))
     updateState((prevState) => ({
       ...prevState,
       isOpenParen: isOpenBracket,
       currentValue,
     }));
-    setCurrentValue(updatedValue);
+    
   };
   return (
     <>

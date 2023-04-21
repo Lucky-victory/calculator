@@ -13,23 +13,23 @@ export function useCheckIsOpenParen(currentValue) {
     let idxOfOpenParen = currentValue.lastIndexOf("(");
     const lastChar = currentValue[currentValue.length - 1];
 
-    if (
-      idxOfCloseParen !== -1 &&
-      idxOfOpenParen < idxOfCloseParen &&
-      lastChar !== ")"
-    ) {
-      setOpenBrackets((prev) => prev.slice(0, prev.length - 1));
-      currentValue += ")";
-    } else if (
+  if (
       idxOfOpenParen !== -1 &&
       idxOfCloseParen < idxOfOpenParen &&
       lastChar !== "("
     ) {
       setOpenBrackets((prev) => [...prev, "("]);
     }
+    else if (
+      idxOfCloseParen !== -1 &&
+      idxOfOpenParen < idxOfCloseParen && openBrackets.length
+    ) {
+      setOpenBrackets((prev) => prev.slice(0, prev.length - 1));
+      
+    } 
   }, [currentValue]);
 
-  return openBrackets.length;
+  return openBrackets.length > 0;
 }
 
 /**

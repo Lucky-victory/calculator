@@ -19,6 +19,8 @@ import {
   evaluateDependencies,
   all,
 } from "mathjs";
+import SideOperatorButtons from "../components/side-operator-buttons";
+import TopOperatorButtons from "../components/top-operator-buttons";
 // [
 //     addDependencies,
 //     subtractDependencies,
@@ -37,6 +39,9 @@ function customSqrt(x) {
 math.import(
   {
     mod: function (x, y) {
+      return x * (y / 100);
+    },
+    '%': function (x, y) {
       return x * (y / 100);
     },
   },
@@ -58,11 +63,11 @@ const HomePage = () => {
   };
   useEffect(() => {
     console.log({ val: state.currentValue });
-    let output;
-    const last = state.currentValue[state.currentValue.length - 1];
-    if (last === "+") return;
-    // output = math.evaluate(state.currentValue);
-    // updateState((prevState) => ({ ...prevState, outputResult: output }));
+    let output=0;
+    const lastChar = state.currentValue[state.currentValue.length - 1];
+    if (isNaN(lastChar) && state.isOpenParen) return;
+    //output = math.evaluate(state.currentValue);
+    updateState((prevState) => ({ ...prevState, outputResult: output }));
   }, [state.currentValue]);
   const handleInputFocus = (evt) => {
     const caretPosition = (evt && evt.selectionStart) || -1;
@@ -89,19 +94,25 @@ const HomePage = () => {
               {state.outputResult}
             </output>
           </div>
-          <div className="wrapper">
-            <div className="top-operators-container">
-              <ClearButton></ClearButton>
-              <BracketButton></BracketButton>
+          
+            <div className="flex">
+            <div className="flex-col">
+
+           {/*<div className="top-operators-container">
+              <TopOperatorButtons></TopOperatorButtons>
             </div>
-            <div className="grid">
+*/}
+              <div className="grid">
+                <BracketButton></BracketButton>
               <Buttons></Buttons>
             </div>
-          </div>
+            </div>
           <div className="operators-container">
-            <BackspaceButton></BackspaceButton>
+            <SideOperatorButtons></SideOperatorButtons>
+            </div>
           </div>
-        </div>
+          </div>
+    
       </Page>
     </CalculatorContext.Provider>
   );

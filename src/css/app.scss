@@ -15,13 +15,12 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  background: lightblue;
+  max-width: 450px;
+  margin:0 auto
 }
-.btns-container {
-  margin-top: auto;
-}
-.wrapper {
-  flex: 1;
-}
+
+
 button {
   font-size: 1.6rem;
   font-family: inherit;
@@ -40,19 +39,31 @@ button:disabled {
 .flex {
   display: flex;
 }
+.flex-col{
+  display: flex;
+  flex-direction: column;
+}
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-  grid-gap: 1rem;
+  grid-template-columns:repeat(3,80px);
+  grid-template-rows: repeat(5,8rem);
+  grid-gap: 1.5rem;
   padding: 1rem;
-  padding-right: 0;
+  padding-right: 1rem;
+  
+  background: lightcoral;
 }
 .grid-box {
   background: #fff;
-  border-radius: 50%;
-  height: 50px;
-  width: 50px;
-  box-shadow: 0 5px 12px #0002;
+  border-radius: 5%;
+  //width: 50px;
+height: 80px;
+
+  box-shadow: 0 5px 12px #0003;
+}
+.equal-btn-box{
+  background: lightgreen;
+  color: #fff !important;
 }
 .btn {
   display: block;
@@ -70,29 +81,28 @@ button:disabled {
   border-radius: 50%;
 }
 .operators-container {
-  display: grid;
-  grid-gap: 1rem;
-  /* padding: 1rem; */
-  grid-template-rows: repeat(3, 70px);
-  grid-template-columns: auto;
+ display: grid;
+
+  grid-template-rows: repeat(4,80px);
+  grid-template-rows:auto ;
+  flex-shrink: 0;
+  gap: 1.5rem;
+   padding: 1rem 1.5rem;
+  flex:1;
+  padding-top: 1.25rem;
+
+ // background: lightgreen
 }
-.operators-container .btn {
-  padding-right: 1.5rem;
-  padding-left: 1.5rem;
-}
-.equal-btn-box {
-  background: #235ef6;
-  border-radius: 50px;
-  grid-row: span 2;
-  height: auto;
-}
+
 .top-operators-container {
   display: grid;
-  grid-template-columns: repeat(3, minmax(6rem, 1fr));
-  grid-gap: 1rem;
+  grid-template-columns: repeat(3,80px);
+  flex-shrink: 0;
+  grid-gap: 1.5rem;
   padding: 1rem;
   padding-right: 0;
-  padding-bottom: 0;
+  padding-bottom: 1rem;
+  background: lightsalmon;
 }
 
 .input-container {
@@ -103,15 +113,15 @@ button:disabled {
   flex-direction: column;
 }
 .input-container .input {
-  height: 70px;
+  height: 100px;
   background: #0006;
   /* display: block; */
   width: 100%;
   font-family: inherit;
-  padding: 1rem;
+  padding: 0.5rem;
   /* padding-bottom: 0.5rem; */
   /* white-space: nowrap; */
-  font-size: 6rem;
+  font-size: 8rem;
   font-weight: 400;
 
   border: none;

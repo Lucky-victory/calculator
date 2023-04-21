@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "./button";
 
-const buttonValues = [
+const buttonValues = ['÷',"x",
   "7",
   "8",
   "9",
@@ -11,10 +11,10 @@ const buttonValues = [
   "1",
   "2",
   "3",
+  "%",
   "0",
   ".",
-  "+",
-  "-",
+  
 ];
 const Buttons = (props) => {
   return (
