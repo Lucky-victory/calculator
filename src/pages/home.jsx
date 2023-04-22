@@ -86,6 +86,17 @@ const HomePage = () => {
     }
     setOutput(resultToDisplay.toLocaleString("en-US"));
   };
+  function format(numStr) {
+    const parts = numStr.split(/(\D+)/); // Splits the string into numeric and non-numeric parts
+    return parts.map(part => {
+  if (!isNaN(part)) { // Checks if the part is numeric
+    return Number(part).toLocaleString(); // Formats the numeric part with commas
+  }
+  return part; // Returns the non-numeric part as is
+}).join('');
+  
+}
+
   const handleInputFocus = (evt) => {
     const caretPosition = (evt && evt.selectionStart) || -1;
     updateState((prevState) => ({ ...prevState, caretPosition }));
@@ -98,7 +109,7 @@ const HomePage = () => {
             <div className="input-wrapper">
               <input
                 type="text"
-                value={state.currentValue}
+                value={format(state.currentValue)}
                 id="input"
                 className="input"
                 readOnly
