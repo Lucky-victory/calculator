@@ -41,7 +41,7 @@ math.import(
     mod: function (x, y) {
       return x * (y / 100);
     },
-    '%': function (x, y) {
+    "%": function (x, y) {
       return x * (y / 100);
     },
   },
@@ -58,17 +58,34 @@ const HomePage = () => {
     isOpenParen: true,
     inputRef,
   });
+  const [output, setOutput] = useState(0);
   const updateState = (state) => {
     setState(state);
   };
   useEffect(() => {
     console.log({ val: state.currentValue });
-    let output=0;
+    let output = 0;
     const lastChar = state.currentValue[state.currentValue.length - 1];
-    if (isNaN(lastChar) /*&& state.isOpenParen*/) return;
-    //output = math.evaluate(state.currentValue);
+    const valueToEvaluate = state.currentValue
+      .replace(/x/g, "*")
+      .replace(/÷/g, "/");
+    if (valueToEvaluate === "") setOutput(0);
+    if (isNaN(lastChar) || state.isOpenParen || valueToEvaluate === "") return;
+    output = math.evaluate(valueToEvaluate);
+    updateOutput(output);
     updateState((prevState) => ({ ...prevState, outputResult: output }));
   }, [state.currentValue]);
+
+  const updateOutput = (result) => {
+    if (isNaN(result)) return;
+    let resultToDisplay = +result;
+    if (resultToDisplay >= 1e14) {
+      resultToDisplay = resultToDisplay.toExponential(2).replace("e+", "e");
+      setOutput(resultToDisplay);
+      return;
+    }
+    setOutput(resultToDisplay.toLocaleString("en-US"));
+  };
   const handleInputFocus = (evt) => {
     const caretPosition = (evt && evt.selectionStart) || -1;
     updateState((prevState) => ({ ...prevState, caretPosition }));
@@ -91,28 +108,26 @@ const HomePage = () => {
               <span className="indicator"></span>
             </div>
             <output className="output" htmlFor="input">
-              {state.outputResult}
+              {output}
             </output>
           </div>
-          
-            <div className="flex wrapper">
-            <div className="flex-col">
 
-           {/*<div className="top-operators-container">
+          <div className="flex wrapper">
+            <div className="flex-col">
+              {/*<div className="top-operators-container">
               <TopOperatorButtons></TopOperatorButtons>
             </div>
 */}
               <div className="grid">
                 <BracketButton></BracketButton>
-              <Buttons></Buttons>
+                <Buttons></Buttons>
+              </div>
             </div>
-            </div>
-          <div className="operators-container">
-            <SideOperatorButtons></SideOperatorButtons>
+            <div className="operators-container">
+              <SideOperatorButtons></SideOperatorButtons>
             </div>
           </div>
-          </div>
-    
+        </div>
       </Page>
     </CalculatorContext.Provider>
   );

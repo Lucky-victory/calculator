@@ -2,30 +2,28 @@ import React, { useContext, useState } from "react";
 import { Icon } from "framework7-react";
 import { CalculatorContext } from "../context/calculator";
 import { useCheckIsOpenParen } from "../js/hooks";
+import { Button as F7Button } from "framework7-react";
 const BackspaceButton = (props) => {
   const { state, updateState } = useContext(CalculatorContext);
-  const [currentValue, setCurrentValue] = useState(state.currentValue);
-  const isOpenBracket = useCheckIsOpenParen(currentValue);
+  const isOpenBracket = useCheckIsOpenParen(state.currentValue);
 
-  const handleClick = ()=>{
-    //const updatedValue = currentValue.slice(0, currentValue.length - 1) + currentValue.slice(currentValue.length);
-    setCurrentValue((prev)=>prev.slice(0,prev.length -1)+prev.slice(prev.length))
+  const handleClick = () => {
+    const currentValue = state.currentValue;
     updateState((prevState) => ({
       ...prevState,
       isOpenParen: isOpenBracket,
-      currentValue,
+      currentValue: currentValue.slice(0, currentValue.length - 1),
     }));
-    
   };
   return (
     <>
       <div className="grid-box ">
-        <button className="btn" id="remove-last-btn" onClick={handleClick}>
+        <F7Button className="btn" id="remove-last-btn" onClick={handleClick}>
           <Icon
             material="backspace_outlined"
             className="material-icons-outlined"
           />
-        </button>
+        </F7Button>
       </div>
     </>
   );

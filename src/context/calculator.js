@@ -1,2 +1,2 @@
 import React, { useState, createContext } from "react";
-export const CalculatorContext = createContext();
+export const CalculatorContext = createContext({});

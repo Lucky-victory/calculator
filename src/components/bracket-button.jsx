@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import { CalculatorContext } from "../context/calculator";
 
+import { Button as F7Button } from "framework7-react";
 import { useCheckIsOpenParen } from "../js/hooks";
 
 const BracketButton = (props) => {
@@ -11,27 +12,28 @@ const BracketButton = (props) => {
     /**
      * @type {HTMLButtonElement}
      */
-    const btn = evt.currentTarget;
+    const btn = evt.target;
 
     if (isOpenParen) {
-      btn.value = ")";
+      btn.dataset["value"] = ")";
     } else {
-      btn.value = "(";
+      btn.dataset["value"] = "(";
     }
-    const { value } = btn;
+    const { value } = btn.dataset;
+    const newValue = state.currentValue + value;
     updateState((prevState) => ({
       ...prevState,
       isOpenParen,
-      currentValue: prevState.currentValue + value,
+      currentValue: newValue,
     }));
   };
 
   return (
     <>
       <div className="grid-box">
-        <button className="btn" value="(" onClick={clickHandler}>
+        <F7Button className="btn" data-value="(" onClick={clickHandler}>
           ( )
-        </button>
+        </F7Button>
       </div>
     </>
   );

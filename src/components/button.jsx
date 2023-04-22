@@ -2,25 +2,38 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { CalculatorContext } from "../context/calculator";
 import { useCheckIsOpenParen } from "../js/hooks";
+import { Button as F7Button } from "framework7-react";
 
 const Button = (props) => {
   const { state, updateState } = useContext(CalculatorContext);
   const isOpenParen = useCheckIsOpenParen(state.currentValue);
   const handleClick = (evt) => {
-    const { value } = evt.currentTarget;
+    console.log({ evt });
+    /**
+     * @type {HTMLButtonElement}
+     */
+    const target = evt.target;
+    const { value } = target.dataset;
     state.inputRef.current?.focus();
     console.log({ st: state.caretPosition });
+    const newValue = state.currentValue + value;
     updateState((prevState) => ({
       ...prevState,
-      currentValue: prevState.currentValue + value,isOpenParen,
+      currentValue: newValue,
+      isOpenParen,
     }));
   };
   return (
     <>
       <div className="grid-box">
-        <button className="btn" value={props.value} onClick={handleClick}>
+        <F7Button
+          type="button"
+          onClick={handleClick}
+          className="btn"
+          data-value={props.value}
+        >
           {props.value}
-        </button>
+        </F7Button>
       </div>
     </>
   );
