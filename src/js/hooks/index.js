@@ -107,8 +107,6 @@ export function useRestrictInvalidSyntax(char, initialValue) {
 }
 
 /**
- *
- * @param {string} char
  * @param {string} initialValue
  * @returns
  */
@@ -128,6 +126,15 @@ export function restrictInvalidSyntax(initialValue) {
       currentValue = "";
       return { currentValue };
     }
+  }
+  // if currentValue has 2 values and it started with '-' but the next char is not a number
+  else if (
+    currentValue.length === 2 &&
+    currentValue.charAt(0) === "-" &&
+    isNaN(currentValue.charAt(1))
+  ) {
+    currentValue = "-";
+    return { currentValue };
   }
   // when the same operator is clicked twice
   else if (ops === "same") {

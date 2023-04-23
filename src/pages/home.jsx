@@ -33,9 +33,7 @@ import TopOperatorButtons from "../components/top-operator-buttons";
 //     evaluateDependencies,
 //   ],
 const math = create(all, { matrix: false });
-function customSqrt(x) {
-  return Math.sqrt(x);
-}
+
 math.import(
   {
     mod: function (x, y) {
