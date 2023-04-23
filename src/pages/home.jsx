@@ -48,14 +48,13 @@ math.import(
   { override: true }
 );
 
-console.log({ math });
 const HomePage = () => {
   const inputRef = useRef();
   const [state, setState] = useState({
     caretPosition: 0,
     outputResult: 0,
     currentValue: "",
-    isOpenParen: true,
+    isOpenParen: false,
     inputRef,
   });
   const [output, setOutput] = useState(0);
@@ -63,21 +62,23 @@ const HomePage = () => {
     setState(state);
   };
   useEffect(() => {
-    console.log({ val: state.currentValue });
-    let output = 0;
     const lastChar = state.currentValue[state.currentValue.length - 1];
     const valueToEvaluate = state.currentValue
       .replace(/x/g, "*")
       .replace(/÷/g, "/");
     if (valueToEvaluate === "") setOutput(0);
-    if (isNaN(lastChar) || state.isOpenParen || valueToEvaluate === "") return;
-    output = math.evaluate(valueToEvaluate);
-    updateOutput(output);
+    if (
+      isNaN(lastChar) ||
+      (!isNaN(lastChar) && state.isOpenParen) ||
+      valueToEvaluate === ""
+    )
+      return;
+    const _output = math.evaluate(valueToEvaluate);
+    updateOutput(_output);
     updateState((prevState) => ({ ...prevState, outputResult: output }));
   }, [state.currentValue]);
 
   const updateOutput = (result) => {
-    if (isNaN(result)) return;
     let resultToDisplay = +result;
     if (resultToDisplay >= 1e14) {
       resultToDisplay = resultToDisplay.toExponential(2).replace("e+", "e");
@@ -86,16 +87,25 @@ const HomePage = () => {
     }
     setOutput(resultToDisplay.toLocaleString("en-US"));
   };
+  /**
+   *
+   * @param {string} numStr
+   * @returns
+   */
   function format(numStr) {
-    const parts = numStr.split(/(\D+)/); // Splits the string into numeric and non-numeric parts
-    return parts.map(part => {
-  if (!isNaN(part)) { // Checks if the part is numeric
-    return Number(part).toLocaleString(); // Formats the numeric part with commas
+    /**
+     * @type {Array<string>}
+     */
+    const parts = numStr?.split(/([^0-9]+)/); // Splits the string into numeric and non-numeric parts
+    return parts
+      .map((part) => {
+        if (!isNaN(part) && part !== "") {
+          return Number(part).toLocaleString(); // Formats the numeric part with commas
+        }
+        return part; // Returns the non-numeric part as is
+      })
+      .join("");
   }
-  return part; // Returns the non-numeric part as is
-}).join('');
-  
-}
 
   const handleInputFocus = (evt) => {
     const caretPosition = (evt && evt.selectionStart) || -1;
@@ -107,15 +117,15 @@ const HomePage = () => {
         <div className="container">
           <div className="input-container">
             <div className="input-wrapper">
-              <input
-                type="text"
-                value={format(state.currentValue)}
+              <div
                 id="input"
                 className="input"
                 readOnly
                 ref={inputRef}
                 onFocus={handleInputFocus}
-              />
+              >
+                {format(state.currentValue)}
+              </div>
               <span className="indicator"></span>
             </div>
             <output className="output" htmlFor="input">
@@ -130,7 +140,7 @@ const HomePage = () => {
             </div>
 */}
               <div className="grid">
-                <BracketButton></BracketButton>
+                {/* <BracketButton></BracketButton> */}
                 <Buttons></Buttons>
               </div>
             </div>

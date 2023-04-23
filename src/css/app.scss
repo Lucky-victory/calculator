@@ -132,6 +132,7 @@ button:disabled {
   outline: none;
   caret-color: green;
   text-align: right;
+  overflow-x: auto;
   /* padding-right: 1rem; */
 }
 .input-wrapper {
