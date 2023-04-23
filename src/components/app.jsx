@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { f7, f7ready, App, View } from "framework7-react";
 
 import routes from "../js/routes";
 import store from "../js/store";
+import { CalculatorContext } from "../context/calculator";
 
 const MyApp = () => {
   // Framework7 Parameters
@@ -22,12 +23,24 @@ const MyApp = () => {
   f7ready(() => {
     // Call F7 APIs here
   });
-
+  const inputRef = useRef();
+  const [state, setState] = useState({
+    caretPosition: 0,
+    outputResult: 0,
+    currentValue: "",
+    isOpenParen: false,
+    inputRef,
+  });
+  const updateState = (state) => {
+    setState(state);
+  };
   return (
-    <App {...f7params}>
-      {/* Your main view, should have "view-main" class */}
-      <View main className="safe-areas" url="/" />
-    </App>
+    <CalculatorContext.Provider value={{ state, updateState }}>
+      <App {...f7params}>
+        {/* Your main view, should have "view-main" class */}
+        <View main className="safe-areas" url="/" />
+      </App>
+    </CalculatorContext.Provider>
   );
 };
 export default MyApp;

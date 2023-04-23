@@ -53,7 +53,7 @@ export function preventDoubleOperator(inputValue) {
   ) {
     operatorStatus = "same";
   } else {
-    operatorStatus = null;
+    operatorStatus = false;
   }
 
   return operatorStatus;
@@ -79,29 +79,68 @@ export function getCurrentAndPrevChar(currentValue) {
 export function useRestrictInvalidSyntax(char, initialValue) {
   const [currentValue, setCurrentValue] = useState(initialValue);
   // console.log({ currentValue, char, initialValue });
-
-  if (
-    currentValue.length === 1 &&
-    operators.includes(currentValue.charAt(0)) &&
-    !(char === "(")
-  ) {
-    setCurrentValue("");
-  }
-  // when the same operator is clicked twice
-  const ops = preventDoubleOperator(currentValue);
-  if (ops === "same") {
-    setCurrentValue(currentValue.slice(0, -1));
-  }
-  // when two different operators are clicked sequentially, replace the previous with current
-  if (ops === "similar") {
-    const { currentChar } = getCurrentAndPrevChar(currentValue);
-    setCurrentValue(currentValue.slice(0, -2));
-    setCurrentValue((prev) => prev + currentChar);
-  }
-
+  useEffect(() => {
+    if (
+      currentValue.length === 1 &&
+      operators.includes(currentValue.charAt(0)) &&
+      !(currentValue.charAt(0) === "(")
+    ) {
+      setCurrentValue("");
+    }
+    // when the same operator is clicked twice
+    const ops = preventDoubleOperator(currentValue);
+    // console.log({ ops });
+    if (ops === "same") {
+      setCurrentValue(currentValue.slice(0, -1));
+    }
+    // when two different operators are clicked sequentially, replace the previous with current
+    if (ops === "similar") {
+      const { currentChar } = getCurrentAndPrevChar(currentValue);
+      setCurrentValue(currentValue.slice(0, -2));
+      setCurrentValue((prev) => prev + currentChar);
+    }
+  }, [initialValue]);
   const setCurrent = (val) => {
     setCurrentValue(val);
   };
-
   return { currentValue, setCurrent };
+}
+
+/**
+ *
+ * @param {string} char
+ * @param {string} initialValue
+ * @returns
+ */
+export function restrictInvalidSyntax(initialValue) {
+  let currentValue = initialValue;
+  console.log({ currentValue }, "here in hook");
+  const ops = preventDoubleOperator(currentValue);
+  if (currentValue.length === 1) {
+    if (currentValue.charAt(0) === ".") {
+      currentValue = "0.";
+      return { currentValue };
+    }
+    if (
+      operators.includes(currentValue.charAt(0)) &&
+      !(currentValue.charAt(0) === "(" || currentValue.charAt(0) === "-")
+    ) {
+      currentValue = "";
+      return { currentValue };
+    }
+  }
+  // when the same operator is clicked twice
+  else if (ops === "same") {
+    currentValue = currentValue.slice(0, -1);
+    return { currentValue };
+  }
+  // when two different operators are clicked sequentially, replace the previous with current
+  else if (ops === "similar" && currentValue[currentValue.length - 1] !== "-") {
+    const { currentChar } = getCurrentAndPrevChar(currentValue);
+    currentValue = currentValue.slice(0, -2);
+    currentValue += currentChar;
+    return { currentValue };
+  }
+
+  return { currentValue };
 }

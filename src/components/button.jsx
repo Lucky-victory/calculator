@@ -1,18 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import PropTypes, { func } from "prop-types";
+import PropTypes from "prop-types";
 import { CalculatorContext } from "../context/calculator";
-import { useCheckIsOpenParen, useRestrictInvalidSyntax } from "../js/hooks";
+import { restrictInvalidSyntax, useCheckIsOpenParen } from "../js/hooks";
 import { Button as F7Button } from "framework7-react";
 
 const Button = function (props) {
   const { state, updateState } = useContext(CalculatorContext);
   // const isOpenParen = useCheckIsOpenParen(state.currentValue);
   const [btnValue, setBtnValue] = useState(props.value);
-  const [v, setV] = useState(state.currentValue);
-  const { currentValue, setCurrent } = useRestrictInvalidSyntax(
-    btnValue,
-    state.currentValue
-  );
 
   const handleClick = (evt) => {
     /**
@@ -22,23 +17,22 @@ const Button = function (props) {
     const { value } = target.dataset;
     // state.inputRef.current?.focus();
     setBtnValue(value);
-    setV((prev) => prev + btnValue);
-    setCurrent(v);
-    updateState((prevState) => ({
-      ...prevState,
-      currentValue: currentValue,
-      // isOpenParen
-    }));
+    const newValue = state.currentValue + value;
+    const { currentValue } = restrictInvalidSyntax(newValue);
+    updateState((prevState) => {
+      return {
+        ...prevState,
+        currentValue,
+        // isOpenParen
+      };
+    });
     console.log({
-      value,
       btnValue,
-      v,
-      cur: currentValue,
-      ur: currentValue,
+      currentValue,
     });
   };
 
-  useEffect(() => {}, [btnValue, currentValue]);
+  // useEffect(() => {}, [btnValue, currentValue])
   return (
     <>
       <div className="grid-box">

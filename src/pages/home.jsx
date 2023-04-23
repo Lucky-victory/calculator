@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Page } from "framework7-react";
 
 import BracketButton from "../components/bracket-button";
@@ -50,17 +50,9 @@ math.import(
 
 const HomePage = () => {
   const inputRef = useRef();
-  const [state, setState] = useState({
-    caretPosition: 0,
-    outputResult: 0,
-    currentValue: "",
-    isOpenParen: false,
-    inputRef,
-  });
+  const { state, updateState } = useContext(CalculatorContext);
+
   const [output, setOutput] = useState(0);
-  const updateState = (state) => {
-    setState(state);
-  };
   useEffect(() => {
     const lastChar = state.currentValue[state.currentValue.length - 1];
     const valueToEvaluate = state.currentValue
@@ -80,7 +72,10 @@ const HomePage = () => {
 
   const updateOutput = (result) => {
     let resultToDisplay = +result;
-    if (resultToDisplay >= 1e14) {
+    // checks if the result is Infinity
+    if (!isFinite(resultToDisplay)) return;
+    // if the result exceeds 100 trillion
+    if (resultToDisplay >= 1e14 || resultToDisplay <= 1e-14) {
       resultToDisplay = resultToDisplay.toExponential(2).replace("e+", "e");
       setOutput(resultToDisplay);
       return;
@@ -112,45 +107,42 @@ const HomePage = () => {
     updateState((prevState) => ({ ...prevState, caretPosition }));
   };
   return (
-    <CalculatorContext.Provider value={{ state, updateState }}>
-      <Page name="home">
-        <div className="container">
-          <div className="input-container">
-            <div className="input-wrapper">
-              <div
-                id="input"
-                className="input"
-                readOnly
-                ref={inputRef}
-                onFocus={handleInputFocus}
-              >
-                {format(state.currentValue)}
-              </div>
-              <span className="indicator"></span>
-            </div>
-            <output className="output" htmlFor="input">
-              {output}
-            </output>
+    <Page name="home">
+      <div className="container">
+        <div className="input-container">
+          <div className="input-wrapper">
+            <input
+              id="input"
+              className="input"
+              readOnly
+              ref={state.inputRef}
+              onFocus={handleInputFocus}
+              defaultValue={format(state.currentValue)}
+            />
+            <span className="indicator"></span>
           </div>
+          <output className="output" htmlFor="input">
+            {output}
+          </output>
+        </div>
 
-          <div className="flex wrapper">
-            <div className="flex-col">
-              {/*<div className="top-operators-container">
+        <div className="flex wrapper">
+          <div className="flex-col">
+            {/*<div className="top-operators-container">
               <TopOperatorButtons></TopOperatorButtons>
             </div>
 */}
-              <div className="grid">
-                {/* <BracketButton></BracketButton> */}
-                <Buttons></Buttons>
-              </div>
-            </div>
-            <div className="operators-container">
-              <SideOperatorButtons></SideOperatorButtons>
+            <div className="grid">
+              {/* <BracketButton></BracketButton> */}
+              <Buttons></Buttons>
             </div>
           </div>
+          <div className="operators-container">
+            <SideOperatorButtons></SideOperatorButtons>
+          </div>
         </div>
-      </Page>
-    </CalculatorContext.Provider>
+      </div>
+    </Page>
   );
 };
 export default HomePage;
