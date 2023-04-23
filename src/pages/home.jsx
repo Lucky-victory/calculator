@@ -73,7 +73,7 @@ const HomePage = () => {
     // checks if the result is Infinity
     if (!isFinite(resultToDisplay)) return;
     // if the result exceeds 100 trillion
-    if (resultToDisplay >= 1e14 || resultToDisplay <= 1e-14) {
+    if (resultToDisplay >= 1e14) {
       resultToDisplay = resultToDisplay.toExponential(2).replace("e+", "e");
       setOutput(resultToDisplay);
       return;
