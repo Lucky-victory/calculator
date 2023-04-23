@@ -22,7 +22,11 @@ const BackspaceButton = (props) => {
   return (
     <>
       <div className="grid-box ">
-        <F7Button className="btn" id="remove-last-btn" onClick={handleClick}>
+        <F7Button
+          type="button"
+          className={`btn btn-colored`}
+          onClick={handleClick}
+        >
           <Icon
             material="backspace_outlined"
             className="material-icons-outlined"

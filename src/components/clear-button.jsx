@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { CalculatorContext } from "../context/calculator";
-
+import { Button as F7Button } from "framework7-react";
 const ClearButton = (props) => {
   const { state, updateState } = useContext(CalculatorContext);
   const handleClick = () => {
@@ -8,9 +8,13 @@ const ClearButton = (props) => {
   };
   return (
     <div className="grid-box">
-      <button className="btn" onClick={handleClick}>
+      <F7Button
+        type="button"
+        className={`btn btn-colored`}
+        onClick={handleClick}
+      >
         C
-      </button>
+      </F7Button>
     </div>
   );
 };

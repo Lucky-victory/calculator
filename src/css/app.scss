@@ -5,9 +5,11 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-html {
+:root {
   font-size: 67.5%;
   --btn-w: 6rem;
+  --f7-theme-color: #0d887e !important;
+  --f7-theme-color-rgb: 13, 136, 126 !important;
 }
 body {
   font-size: 16px;
@@ -16,7 +18,7 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: lightblue;
+  background: #f3f3f3;
   max-width: 450px;
   margin: 0 auto;
   width: 100%;
@@ -24,19 +26,16 @@ body {
 }
 
 button {
-  font-size: 1.6rem;
-  font-family: inherit;
-  cursor: pointer;
-  touch-action: manipulation;
-  border: 0;
-  outline: 0;
-  background: transparent;
+  //   font-size: 1.6rem;
+  //   font-family: inherit;
+  //   cursor: pointer;
+  //   touch-action: manipulation;
+  //   border: 0;
+  //   outline: 0;
+  //   background: transparent;
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-}
-button:disabled {
-  cursor: default;
 }
 .flex {
   display: flex;
@@ -64,16 +63,18 @@ button:disabled {
   background: #fff;
   border-radius: 5%;
   height: var(--btn-w, 8rem);
-
   box-shadow: 0 5px 12px #0003;
+  transition: all 0.5s;
+  transform: scale(1);
+  border: 2px solid transparent;
 }
-.equal-btn-box {
-  background: lightgreen;
-  color: #fff !important;
+.grid-box:hover {
+  transform: scale(0.9);
+  box-shadow: none;
+  border-color: rgba(var(--f7-theme-color-rgb), 0.7);
 }
 .btn {
   display: block;
-  width: 100%;
   padding: 0.5rem;
   height: 100%;
   font-weight: 500;
@@ -81,6 +82,15 @@ button:disabled {
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: none;
+  color: #000;
+  &.equal-btn {
+    color: #fff;
+    background-color: var(--f7-theme-color);
+  }
+  &.btn-colored {
+    color: var(--f7-theme-color);
+  }
 }
 .rounded {
   border-radius: 50%;
@@ -89,7 +99,7 @@ button:disabled {
   display: grid;
 
   grid-template-rows: repeat(4, var(--btn-w, 6rem));
-  grid-template-rows: auto;
+
   flex: 1;
   flex-shrink: 0;
   gap: 1.5rem;
@@ -133,7 +143,6 @@ button:disabled {
   caret-color: green;
   text-align: right;
   overflow-x: auto;
-  /* padding-right: 1rem; */
 }
 .input-wrapper {
   position: relative;

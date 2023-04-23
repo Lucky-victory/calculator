@@ -39,7 +39,7 @@ const Button = function (props) {
         <F7Button
           type="button"
           onClick={handleClick}
-          className="btn"
+          className={`btn ${isNaN(btnValue)?'btn-colored':''}`}
           data-value={btnValue}
         >
           {btnValue}
