@@ -33,7 +33,12 @@ const BracketButton = (props) => {
   return (
     <>
       <div className="grid-box">
-        <F7Button className="btn" data-value="(" onClick={clickHandler}>
+        <F7Button
+          type="button"
+          className="btn"
+          data-value="("
+          onClick={clickHandler}
+        >
           ( )
         </F7Button>
       </div>

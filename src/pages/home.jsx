@@ -109,14 +109,14 @@ const HomePage = () => {
       <div className="container">
         <div className="input-container">
           <div className="input-wrapper">
-            <input
+            <textarea
               id="input"
               className="input"
               readOnly
               ref={state.inputRef}
               onFocus={handleInputFocus}
-              defaultValue={format(state.currentValue)}
-            />
+              value={format(state.currentValue)}
+            ></textarea>
             <span className="indicator"></span>
           </div>
           <output className="output" htmlFor="input">

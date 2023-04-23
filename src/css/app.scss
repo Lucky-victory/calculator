@@ -61,7 +61,7 @@ button {
 }
 .grid-box {
   background: #fff;
-  border-radius: 5%;
+  border-radius: 12px;
   height: var(--btn-w, 8rem);
   box-shadow: 0 5px 12px #0003;
   transition: all 0.5s;
@@ -134,7 +134,7 @@ button {
   width: 100%;
   font-family: inherit;
   padding: 0.5rem;
-
+  white-space: nowrap;
   font-size: 6.5rem;
   font-weight: 400;
 
