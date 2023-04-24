@@ -46,7 +46,7 @@ body {
   flex: 1;
   flex-shrink: 0;
   align-items: flex-end;
-  background: #dfd;
+  // background: #dfd;
 }
 .grid {
   display: grid;
@@ -118,13 +118,13 @@ body {
   // min-height: 100px;
   align-items: flex-end;
   display: flex;
-  background: #00f3;
+  // background: #00f3;
   flex-direction: column;
-  // flex: 1;
+  flex: 1;
 }
 .input-container .input {
   // height: 90px;
-  background: #0002;
+  // background: #0002;
   display: block;
   width: 100%;
   font-family: inherit;
