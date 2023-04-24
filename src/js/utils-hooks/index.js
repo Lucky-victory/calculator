@@ -112,7 +112,7 @@ export function useRestrictInvalidSyntax(char, initialValue) {
  */
 export function restrictInvalidSyntax(initialValue) {
   let currentValue = initialValue;
-  console.log({ currentValue }, "here in hook");
+
   const ops = preventDoubleOperator(currentValue);
   if (currentValue.length === 1) {
     if (currentValue.charAt(0) === ".") {

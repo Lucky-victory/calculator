@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Page } from "framework7-react"
+import { Page } from "framework7-react";
 import { CalculatorContext } from "../context/calculator";
 import Buttons from "../components/buttons";
 import BackspaceButton from "../components/backspace-button";
@@ -15,22 +15,20 @@ import {
   sinDependencies,
   create,
   evaluateDependencies,
-  all,
 } from "mathjs";
 import SideOperatorButtons from "../components/side-operator-buttons";
 import TopOperatorButtons from "../components/top-operator-buttons";
-const mathjsDeps =
-  [
-    addDependencies,
-    subtractDependencies,
-    multiplyDependencies,
-    divideDependencies,
-    cosDependencies,
-    sinDependencies,
-    expDependencies,
-    sqrtDependencies,
-    evaluateDependencies,
-  ];
+const mathjsDeps = [
+  addDependencies,
+  subtractDependencies,
+  multiplyDependencies,
+  divideDependencies,
+  cosDependencies,
+  sinDependencies,
+  expDependencies,
+  sqrtDependencies,
+  evaluateDependencies,
+];
 const math = create(mathjsDeps, { matrix: false });
 
 math.import(
@@ -46,21 +44,32 @@ math.import(
 );
 
 const HomePage = () => {
-  
   const { state, updateState } = useContext(CalculatorContext);
-
+  const [inputFontSize, setInputFontSize] = useState(6);
   const [output, setOutput] = useState(0);
   useEffect(() => {
     const lastChar = state.currentValue[state.currentValue.length - 1];
+    /**
+     * @type {string}
+     */
     const valueToEvaluate = state.currentValue
       .replace(/x/g, "*")
       .replace(/÷/g, "/");
     if (valueToEvaluate === "") setOutput(0);
-    if (
-      isNaN(lastChar) ||
-      (!isNaN(lastChar) && state.isOpenParen)
-    )
-      return;
+    if (isNaN(lastChar) || (!isNaN(lastChar) && state.isOpenParen)) return;
+    const valLen = valueToEvaluate.length;
+    switch (true) {
+      case valLen >= 8 && valLen < 11:
+        setInputFontSize(4.5);
+        break;
+      case valLen >= 11:
+        setInputFontSize(3.5);
+        break;
+
+      default:
+        setInputFontSize(6);
+        break;
+    }
     const _output = math.evaluate(valueToEvaluate);
     updateOutput(_output);
     updateState((prevState) => ({ ...prevState, outputResult: output }));
@@ -71,7 +80,7 @@ const HomePage = () => {
     // checks if the result is Infinity
     if (!isFinite(resultToDisplay)) return;
     // if the result exceeds 100 trillion
-    if (resultToDisplay >= 1e14) {
+    if (Math.abs(resultToDisplay) >= 1e14) {
       resultToDisplay = resultToDisplay.toExponential(2).replace("e+", "e");
       setOutput(resultToDisplay);
       return;
@@ -104,46 +113,44 @@ const HomePage = () => {
   };
   return (
     <Page name="home">
-      <div className="container">
-        <div className="input-container">
-          <div className="input-wrapper">
-            <textarea
-              id="input"
-              className="input"
-              readOnly
-              ref={state.inputRef}
-              onFocus={handleInputFocus}
-              value={format(state.currentValue)}
-            ></textarea>
-            <span className="indicator"></span>
+      <main className="main-container">
+        <div className="calculator-container">
+          <div className="input-container">
+            <div className="input-wrapper">
+              <input
+                id="input"
+                className="input"
+                readOnly
+                style={{ fontSize: `${inputFontSize}rem` }}
+                ref={state.inputRef}
+                onFocus={handleInputFocus}
+                value={format(state.currentValue)}
+              />
+              <span className="indicator"></span>
+            </div>
+            <output className="output" htmlFor="input">
+              {output == 0 ? "" : output}
+            </output>
           </div>
-          <output className="output" htmlFor="input">
-            {output}
-          </output>
-        </div>
 
-            {/*<div className="top-operators-container">
+          {/*<div className="top-operators-container">
               <TopOperatorButtons></TopOperatorButtons>
             </div>
         
           */}
-          <div className="flex wrapper">
-        <div className="flex-col">
-          
-
-            <div className="grid">
-              {/* <BracketButton></BracketButton> */}
-          <Buttons></Buttons>
+          <div className="wrapper">
+            <div className="flex-col">
+              <div className="grid">
+                {/* <BracketButton></BracketButton> */}
+                <Buttons></Buttons>
+              </div>
+            </div>
+            <div className="operators-container">
+              <SideOperatorButtons></SideOperatorButtons>
+            </div>
           </div>
         </div>
-          <div className="operators-container">
-
-            <SideOperatorButtons></SideOperatorButtons>
-          </div>
-      </div>
-</div>
-          
-          
+      </main>
     </Page>
   );
 };

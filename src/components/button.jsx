@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { CalculatorContext } from "../context/calculator";
-import { restrictInvalidSyntax, useCheckIsOpenParen } from "../js/hooks";
+import { restrictInvalidSyntax, useCheckIsOpenParen } from "../js/utils-hooks";
 import { Button as F7Button } from "framework7-react";
 
 const Button = function (props) {
@@ -27,7 +27,6 @@ const Button = function (props) {
       };
     });
     console.log({
-      btnValue,
       currentValue,
     });
   };
@@ -39,7 +38,7 @@ const Button = function (props) {
         <F7Button
           type="button"
           onClick={handleClick}
-          className={`btn ${isNaN(btnValue)?'btn-colored':''}`}
+          className={`btn ${isNaN(btnValue) ? "btn-colored" : ""}`}
           data-value={btnValue}
         >
           {btnValue}

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Icon } from "framework7-react";
 import { CalculatorContext } from "../context/calculator";
-import { useCheckIsOpenParen } from "../js/hooks";
+import { useCheckIsOpenParen } from "../js/utils-hooks";
 import { Button as F7Button } from "framework7-react";
 
 const BackspaceButton = (props) => {
