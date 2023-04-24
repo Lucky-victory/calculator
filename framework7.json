@@ -1,7 +1,7 @@
 {
   "cwd": "C:\\Users\\lucky\\my-opensource\\calculator",
   "type": ["web"],
-  "name": "caculator",
+  "name": "calculator",
   "framework": "react",
   "template": "blank",
   "cssPreProcessor": "scss",
