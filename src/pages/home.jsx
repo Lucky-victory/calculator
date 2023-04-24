@@ -1,7 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Page } from "framework7-react";
-
-import BracketButton from "../components/bracket-button";
+import { Page } from "framework7-react"
 import { CalculatorContext } from "../context/calculator";
 import Buttons from "../components/buttons";
 import BackspaceButton from "../components/backspace-button";
@@ -21,18 +19,19 @@ import {
 } from "mathjs";
 import SideOperatorButtons from "../components/side-operator-buttons";
 import TopOperatorButtons from "../components/top-operator-buttons";
-// [
-//     addDependencies,
-//     subtractDependencies,
-//     multiplyDependencies,
-//     divideDependencies,
-//     cosDependencies,
-//     sinDependencies,
-//     expDependencies,
-//     sqrtDependencies,
-//     evaluateDependencies,
-//   ],
-const math = create(all, { matrix: false });
+const mathjsDeps =
+  [
+    addDependencies,
+    subtractDependencies,
+    multiplyDependencies,
+    divideDependencies,
+    cosDependencies,
+    sinDependencies,
+    expDependencies,
+    sqrtDependencies,
+    evaluateDependencies,
+  ];
+const math = create(mathjsDeps, { matrix: false });
 
 math.import(
   {
@@ -40,14 +39,14 @@ math.import(
       return x * (y / 100);
     },
     "%": function (x, y) {
-      return x * (y / 100);
+      return x * r(y / 100);
     },
   },
   { override: true }
 );
 
 const HomePage = () => {
-  const inputRef = useRef();
+  
   const { state, updateState } = useContext(CalculatorContext);
 
   const [output, setOutput] = useState(0);
