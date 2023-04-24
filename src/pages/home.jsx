@@ -18,6 +18,7 @@ import {
 } from "mathjs";
 import SideOperatorButtons from "../components/side-operator-buttons";
 import TopOperatorButtons from "../components/top-operator-buttons";
+import CalcInput from "../components/input";
 const mathjsDeps = [
   addDependencies,
   subtractDependencies,
@@ -115,29 +116,17 @@ const HomePage = () => {
     <Page name="home">
       <main className="main-container">
         <div className="calculator-container">
-          <div className="input-container">
-            <div className="input-wrapper">
-              <input
-                id="input"
-                className="input"
-                readOnly
-                style={{ fontSize: `${inputFontSize}rem` }}
-                ref={state.inputRef}
-                onFocus={handleInputFocus}
-                value={format(state.currentValue)}
-              />
-              <span className="indicator"></span>
-            </div>
-            <output className="output" htmlFor="input">
-              {output == 0 ? "" : output}
-            </output>
-          </div>
-
           {/*<div className="top-operators-container">
               <TopOperatorButtons></TopOperatorButtons>
             </div>
         
           */}
+          <CalcInput
+            value={format(state.currentValue)}
+            output={output}
+            handleInputFocus={handleInputFocus}
+            fontSize={inputFontSize}
+          />
           <div className="wrapper">
             <div className="flex-col">
               <div className="grid">
