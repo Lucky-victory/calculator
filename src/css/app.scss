@@ -13,30 +13,23 @@
 }
 body {
   font-size: 16px;
+
+  min-height: 100vh;
 }
 .container {
-  height: 100%;
+  height: 100vh;
+  min-height: 600px;
   display: flex;
   flex-direction: column;
-  background: #f3f3f3;
-  max-width: 450px;
-  margin: 0 auto;
+  background: #fff;
+  max-width: 750px;
+  margin: auto;
   width: 100%;
   overflow: hidden;
+  max-height: 820px;
 }
 
-button {
-  //   font-size: 1.6rem;
-  //   font-family: inherit;
-  //   cursor: pointer;
-  //   touch-action: manipulation;
-  //   border: 0;
-  //   outline: 0;
-  //   background: transparent;
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-}
+
 .flex {
   display: flex;
 }
@@ -52,8 +45,8 @@ button {
 }
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, var(--btn-w, 6rem));
-  grid-template-rows: repeat(5, var(--btn-w, 6rem));
+  grid-template-columns: repeat(3, minmax(var(--btn-w, 6rem),1fr));
+  grid-template-rows: repeat(5, minmax(var(--btn-w, 6rem),1fr));
   grid-gap: 1.5rem;
   padding: 1rem;
   padding-right: 1rem;
@@ -62,16 +55,14 @@ button {
 .grid-box {
   background: #fff;
   border-radius: 12px;
-  height: var(--btn-w, 8rem);
+  //height: var(--btn-w, 8rem);
   box-shadow: 0 5px 12px #0003;
-  transition: all 0.5s;
-  transform: scale(1);
-  border: 2px solid transparent;
+  transition: all 0.4s;
+
 }
 .grid-box:hover {
-  transform: scale(0.9);
-  box-shadow: none;
-  border-color: rgba(var(--f7-theme-color-rgb), 0.7);
+  
+  box-shadow: inset 0 5px 12px #0003;
 }
 .btn {
   display: block;
@@ -98,8 +89,8 @@ button {
 .operators-container {
   display: grid;
 
-  grid-template-rows: repeat(4, var(--btn-w, 6rem));
-
+  grid-template-rows: repeat(5, var(--btn-w, 6rem));
+flex-wrap: wrap;
   flex: 1;
   flex-shrink: 0;
   gap: 1.5rem;
@@ -129,7 +120,7 @@ button {
 }
 .input-container .input {
   height: 100px;
-  background: #0006;
+  background: #0002;
   /* display: block; */
   width: 100%;
   font-family: inherit;
@@ -154,7 +145,7 @@ button {
   width: 3px;
   top: 0;
   right: 0;
-  background: #000;
+  background: var(--f7-theme-color);
   border-radius: 25px;
   animation: blink 1s infinite;
 }
@@ -174,4 +165,20 @@ button {
   100% {
     opacity: 1;
   }
+}
+
+@media all and (orientation:landscape),(min-width:640px) {
+  .grid{
+
+ grid-template-columns: repeat(5, var(--btn-w, 6rem));
+ grid-template-rows: auto;
+  }
+  .operators-container{
+    display: flex;
+  }
+  .operators-container > *{
+  
+  flex:1;
+  min-width: calc(var(--btn-w) + 4rem);
+}
 }

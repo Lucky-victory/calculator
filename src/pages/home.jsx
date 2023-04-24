@@ -128,19 +128,19 @@ const HomePage = () => {
             </div>
         
           */}
+          <div className="flex wrapper">
         <div className="flex-col">
           
-          <div className=" wrapper">
 
             <div className="grid">
               {/* <BracketButton></BracketButton> */}
           <Buttons></Buttons>
           </div>
+        </div>
           <div className="operators-container">
 
             <SideOperatorButtons></SideOperatorButtons>
           </div>
-        </div>
       </div>
 </div>
           

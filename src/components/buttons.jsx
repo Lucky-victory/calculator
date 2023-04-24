@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./button";
+import SideOperatorButtons from "./side-operator-buttons";
 
 const buttonValues = [
   "^",
@@ -24,6 +25,7 @@ const Buttons = (props) => {
       {buttonValues.map((val, index) => {
         return <Button key={crypto.randomUUID() || index} value={val} />;
       })}
+
     </>
   );
 };
