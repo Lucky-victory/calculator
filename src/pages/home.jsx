@@ -123,23 +123,38 @@ const HomePage = () => {
           </output>
         </div>
 
-        <div className="flex wrapper">
-          <div className="flex-col">
             {/*<div className="top-operators-container">
               <TopOperatorButtons></TopOperatorButtons>
             </div>
-*/}
+        
+          */}
+        <div className="flex-col">
+          
+          <div className=" wrapper">
+
             <div className="grid">
               {/* <BracketButton></BracketButton> */}
-              <Buttons></Buttons>
-            </div>
+          <Buttons></Buttons>
           </div>
           <div className="operators-container">
+
             <SideOperatorButtons></SideOperatorButtons>
           </div>
         </div>
       </div>
+</div>
+          
+          
     </Page>
   );
 };
 export default HomePage;
+/**
+ * 
+ * 
+ * 
+        <div className="flex wrapper">
+          <div className="flex-col">
+            </div>
+            </div>
+ */
