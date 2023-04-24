@@ -59,8 +59,7 @@ const HomePage = () => {
     if (valueToEvaluate === "") setOutput(0);
     if (
       isNaN(lastChar) ||
-      (!isNaN(lastChar) && state.isOpenParen) ||
-      valueToEvaluate === ""
+      (!isNaN(lastChar) && state.isOpenParen)
     )
       return;
     const _output = math.evaluate(valueToEvaluate);

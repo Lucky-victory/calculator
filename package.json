@@ -6,12 +6,14 @@
   "repository": "",
   "license": "UNLICENSED",
   "scripts": {
-    "start": "npm run dev",
+    "start": "npm run build-pwa && npm run dev",
     "dev": "cross-env NODE_ENV=development vite",
     "build": "cross-env NODE_ENV=production vite build",
     "postinstall": "cpy --flat ./node_modules/framework7-icons/fonts/*.* ./src/fonts/ && cpy --flat ./node_modules/material-icons/iconfont/*.* ./src/fonts/",
     "ionic:build": "npm run build",
-    "ionic:serve": "npm run start"
+    "ionic:serve": "npm run start",
+    "deploy":"npm run build-pwa && npm run build",
+    "build-pwa":"workbox generateSW workbox-config.js"
   },
   "browserslist": [
     "IOS >= 15",
