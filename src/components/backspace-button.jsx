@@ -4,7 +4,7 @@ import { CalculatorContext } from "../context/calculator";
 import { useCheckIsOpenParen, useLongPress } from "../js/hooks";
 import { Button as F7Button } from "framework7-react";
 
-const BackspaceButton = (props) => {
+const BackspaceButton = () => {
   const { state, updateState } = useContext(CalculatorContext);
   const isOpenBracket = useCheckIsOpenParen(state.currentValue);
   const buttonRef = useRef(null);

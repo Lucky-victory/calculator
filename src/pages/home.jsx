@@ -4,6 +4,8 @@ import { CalculatorContext } from "../context/calculator";
 import Buttons from "../components/buttons";
 import BackspaceButton from "../components/backspace-button";
 import ClearButton from "../components/clear-button";
+
+import { Button as F7Button, Icon } from "framework7-react";
 import {
   addDependencies,
   subtractDependencies,
@@ -116,26 +118,32 @@ const HomePage = () => {
     <Page name="home">
       <main className="main-container">
         <div className="calculator-container">
-          {/*<div className="top-operators-container">
-              <TopOperatorButtons></TopOperatorButtons>
-            </div>
-        
-          */}
           <CalcInput
             value={format(state.currentValue)}
             output={output}
             handleInputFocus={handleInputFocus}
             fontSize={inputFontSize}
           />
-          <div className="wrapper">
-            <div className="flex-col">
+          <div className="flex-col">
+            <div className="flex">
+              <div className="top-operators-container">
+                <TopOperatorButtons></TopOperatorButtons>
+              </div>
+              <F7Button
+                type="button"
+                iconMaterial="expand_less"
+                className="material-icons-outlined"
+              ></F7Button>
+            </div>
+
+            <div className="wrapper">
               <div className="grid">
                 {/* <BracketButton></BracketButton> */}
                 <Buttons></Buttons>
               </div>
-            </div>
-            <div className="operators-container">
-              <SideOperatorButtons></SideOperatorButtons>
+              <div className="operators-container">
+                <SideOperatorButtons></SideOperatorButtons>
+              </div>
             </div>
           </div>
         </div>

@@ -101,15 +101,18 @@ body {
 
 .top-operators-container {
   display: grid;
-  grid-template-columns: repeat(3, 6rem);
+  grid-template-columns: repeat(4, 6rem);
   flex-shrink: 0;
-  grid-gap: 1.5rem;
-  padding: 1rem;
+  grid-gap: 1rem;
+  padding-left: 1rem;
   padding-right: 0;
-  padding-bottom: 1rem;
-  background: lightsalmon;
+  // padding-bottom: 1rem;
+  // background: lightsalmon;
 }
-
+.top-operators-container > * {
+  font-size: 2.5rem;
+  font-weight: 500;
+}
 .input-container {
   align-items: flex-end;
   display: flex;
