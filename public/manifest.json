@@ -1,7 +1,7 @@
 {
   "name": "Calculator & Currency Converter",
-  "short_name": "Calculator Cur",
-  "description": "Calculator and Currency converter App",
+  "short_name": "Calculator",
+  "description": "Calculator and Currency Converter",
   "icons": [
     {
       "src": "icons/android/android-launchericon-512-512.png",
@@ -62,12 +62,13 @@
     {
       "src": "icons/ios/192.png",
       "sizes": "192x192",
-      "type": "image/png","purpose":"any maskable"
+      "type": "image/png"
     },
     {
       "src": "icons/ios/256.png",
       "sizes": "256x256",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
       "src": "icons/ios/512.png",

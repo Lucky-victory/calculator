@@ -10,7 +10,7 @@
     "customColor": true,
     "color": "#0d887e",
     "darkMode": false,
-    "iconFonts": true
+    "iconFonts": false
   },
   "customBuild": false
 }
