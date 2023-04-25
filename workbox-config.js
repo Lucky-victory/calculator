@@ -1,31 +1,19 @@
+
 module.exports = {
-	globDirectory: 'www/',
-	globPatterns: [
-		'**/*.{html}'
-	],
-runtimeCaching: [
-    {
-      urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
-      handler: 'CacheFirst',
-      options: {
-        cacheName: 'images',
-        expiration: {
-          maxEntries: 10,
-          maxAgeSeconds: 60 * 60 * 24 * 30, // 30 Days
-        },
-      },
-    },
-    {
-      urlPattern: /\.(?:css|js)$/,
-      handler: 'StaleWhileRevalidate',
-      options: {
-        cacheName: 'assets',
-      },
-    }
+  globDirectory: "www/",
+  globPatterns: [
+    "**/*.{woff,woff2,png,html,css,js,json}"
   ],
-	swDest: 'www/sw.js',
-	ignoreURLParametersMatching: [
+  swDest: "www/sw.js",
+  ignoreURLParametersMatching: [
 		/^utm_/,
 		/^fbclid$/
-	]
+	],
+  runtimeCaching: [{
+    urlPattern: /\.(?:png|woff|woff2|jpg|jpeg|svg|gif)$/,
+    handler: "CacheFirst",
+    options: {
+      "cacheName": "assets"
+    }
+  }]
 };
