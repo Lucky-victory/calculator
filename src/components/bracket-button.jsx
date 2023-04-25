@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { CalculatorContext } from "../context/calculator";
 
 import { Button as F7Button } from "framework7-react";
-import { useCheckIsOpenParen } from "../js/utils-hooks";
+import { useCheckIsOpenParen } from "../js/hooks";
 
 const BracketButton = (props) => {
   const { state, updateState } = useContext(CalculatorContext);

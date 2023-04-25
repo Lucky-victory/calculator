@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { CalculatorContext } from "../context/calculator";
-import { restrictInvalidSyntax, useCheckIsOpenParen } from "../js/utils-hooks";
+// import { restrictInvalidSyntax } from "../js/helpers";
 import { Button as F7Button } from "framework7-react";
+import { restrictInvalidSyntax } from "../js/helpers";
 
 const Button = function (props) {
   const { state, updateState } = useContext(CalculatorContext);
@@ -31,7 +32,6 @@ const Button = function (props) {
     });
   };
 
-  // useEffect(() => {}, [btnValue, currentValue])
   return (
     <>
       <div className="grid-box">
@@ -50,6 +50,5 @@ const Button = function (props) {
 
 Button.propTypes = {
   value: PropTypes.string.isRequired,
-  extraClassName: PropTypes.string,
 };
 export default Button;

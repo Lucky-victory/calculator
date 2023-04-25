@@ -8,12 +8,14 @@ import { CalculatorContext } from "../context/calculator";
 const MyApp = () => {
   // Framework7 Parameters
   const f7params = {
-    name: "caculator", // App name
+    name: "Calculator", // App name
     theme: "auto", // Automatic theme detection
     colors: {
-      primary: "#235ef6",
+      primary: "#0d887e",
     },
-
+    touch: {
+      tapHold: true, //enable tap hold events
+    },
     // App store
     store: store,
     // App routes
