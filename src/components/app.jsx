@@ -30,7 +30,7 @@ const MyApp = () => {
     caretPosition: 0,
     outputResult: 0,
     currentValue: "",
-    isOpenParen: false,
+    isClosedParen: true,
     inputRef,
   });
   const updateState = (state) => {

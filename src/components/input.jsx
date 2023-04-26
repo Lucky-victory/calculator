@@ -19,8 +19,8 @@ const CalcInput = ({ fontSize, handleInputFocus, value, output }) => {
         />
         <span className="indicator"></span>
       </div>
-      <output className="output" htmlFor="input">
-        {output == 0 ? "" : output}
+      <output className={`output ${output == 0 ? "hide":""}`} htmlFor="input">
+        { output}
       </output>
     </div>
   );

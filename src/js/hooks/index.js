@@ -70,7 +70,7 @@ export function useLongPress(ref, callback = () => {}, delay = 1500) {
   return null;
 }
 
-export function useParenthesesChecker() {
+export function useParenthesesChecker(value) {
   const [isClosed, setIsClosed] = useState(true);
 
   function checkParentheses(value) {
@@ -91,6 +91,8 @@ export function useParenthesesChecker() {
 
     setIsClosed(stack.length === 0);
   }
-
+  useEffect(() => {
+  checkParentheses(value)
+},[value])
   return [isClosed, checkParentheses];
 }

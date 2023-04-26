@@ -68,7 +68,7 @@ const HomePage = () => {
     if (valueToEvaluate === "") setOutput(0);
     if (
       (!isFactorial(valueToEvaluate) && isNaN(lastChar)) ||
-      (!isNaN(lastChar) && state.isOpenParen)
+      (!isNaN(lastChar) && !state.isClosedParen)
     )
       return;
     const valLen = valueToEvaluate.length;
@@ -135,15 +135,15 @@ const HomePage = () => {
             handleInputFocus={handleInputFocus}
             fontSize={inputFontSize}
           />
-          <div className="flex-col">
-            <div className="flex">
+          <div className="btns-container">
+           <div className="flex">
               <div className="top-operators-container">
                 <TopOperatorButtons></TopOperatorButtons>
               </div>
               <F7Button
                 type="button"
                 iconMaterial="expand_less"
-                className="material-icons-outlined"
+                className="material-icons-outlined top-btns-toggle"
               ></F7Button>
             </div>
 

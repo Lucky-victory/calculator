@@ -7,7 +7,7 @@
 }
 :root {
   font-size: 67.5%;
-  --btn-w: 6rem;
+  --btn-w: 5rem;
   --f7-theme-color: #0d887e;
   --f7-theme-color-rgb: 13, 136, 126;
 }
@@ -17,6 +17,10 @@ body {
 .main-container {
   display: flex;
   min-height: 100vh;
+}
+.btns-container{
+  display: flex;
+  flex-direction: column;
 }
 .calculator-container {
   height: 100vh;
@@ -60,7 +64,7 @@ body {
   background: #fff;
   border-radius: 12px;
   //height: var(--btn-w, 8rem);
-  box-shadow: 0 5px 12px #0003;
+  //box-shadow: 0 5px 12px #0003;
   transition: box-shadow 0.4s;
 
   &.backspace {
@@ -70,7 +74,7 @@ body {
   }
 }
 .grid-box:hover {
-  box-shadow: inset 0 5px 12px #0003;
+ // box-shadow: inset 0 5px 12px #0003;
 }
 .btn {
   display: block;
@@ -107,7 +111,7 @@ body {
 
 .top-operators-container {
   display: grid;
-  grid-template-columns: repeat(4, 6rem);
+  grid-template-columns: repeat(4, 5rem);
   flex-shrink: 0;
   grid-gap: 1rem;
   padding-left: 1rem;
@@ -160,6 +164,9 @@ body {
   font-size: 2.75rem;
   min-height: 3rem;
   color: #7f8084;
+  &.hide{
+  visibility: hidden;
+  }
 }
 
 @keyframes blink {
@@ -184,6 +191,18 @@ body {
   }
   .operators-container > * {
     flex: 1;
-    min-width: calc(var(--btn-w) + 4rem);
+    min-width: calc(var(--btn-w) + 2rem);
+  }
+  .btns-container{
+    flex-direction: row;
+    align-items: center;
+  }
+  .top-operators-container{
+
+  grid-template-columns: repeat(3, 5rem);
+  }
+
+  .top-btns-toggle{
+    display: none;
   }
 }

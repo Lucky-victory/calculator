@@ -4,10 +4,12 @@ import { CalculatorContext } from "../context/calculator";
 // import { restrictInvalidSyntax } from "../js/helpers";
 import { Button as F7Button } from "framework7-react";
 import { restrictInvalidSyntax } from "../js/helpers";
+import { useParenthesesChecker } from "../js/hooks";
 
 const Button = function (props) {
   const { state, updateState } = useContext(CalculatorContext);
-  // const isOpenParen = useCheckIsOpenParen(state.currentValue);
+  const [isClosed,checkParentheses] = useParenthesesChecker(state.currentValue);
+  
   const [btnValue, setBtnValue] = useState(props.value);
 
   const handleClick = (evt) => {
@@ -20,11 +22,12 @@ const Button = function (props) {
     setBtnValue(value);
     const newValue = state.currentValue + value;
     const { currentValue } = restrictInvalidSyntax(newValue);
+    checkParentheses(currentValue)
     updateState((prevState) => {
       return {
         ...prevState,
         currentValue,
-        // isOpenParen
+         isClosedParen:isClosed
       };
     });
     console.log({

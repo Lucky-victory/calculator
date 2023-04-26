@@ -1,10 +1,13 @@
 import React, { useContext } from "react";
 import { CalculatorContext } from "../context/calculator";
 import { Button as F7Button } from "framework7-react";
+import { useParenthesesChecker } from "../js/hooks";
 const ClearButton = (props) => {
   const { state, updateState } = useContext(CalculatorContext);
+//  const [isClosed,checkParentheses] = useParenthesesChecker();
+
   const handleClick = () => {
-    updateState((prevState) => ({ ...prevState, currentValue: "" }));
+    updateState((prevState) => ({ ...prevState, currentValue: "",isClosedParen:true }));
   };
   return (
     <div className="grid-box">

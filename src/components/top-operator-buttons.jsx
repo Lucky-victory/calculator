@@ -7,12 +7,14 @@ import BracketButton from "./bracket-button";
 import { Button as F7Button } from "framework7-react";
 import { CalculatorContext } from "../context/calculator";
 import { restrictInvalidSyntax } from "../js/helpers";
+import { useParenthesesChecker } from "../js/hooks";
 
 const TopOperatorButtons = () => {
   const buttons = ["!", "cos", "sin", "tan", "log", "in", "(", ")"];
   const funcs = ["cos", "sin", "log", "in", "tan"];
   const { state, updateState } = useContext(CalculatorContext);
   // const isOpenParen = useCheckIsOpenParen(state.currentValue);
+  const [isClosed,checkParentheses] = useParenthesesChecker(state.currentValue);
 
   const handleClick = (evt) => {
     /**
@@ -24,11 +26,12 @@ const TopOperatorButtons = () => {
 
     const newValue = state.currentValue + value;
     const { currentValue } = restrictInvalidSyntax(newValue);
+    checkParentheses(currentValue)
     updateState((prevState) => {
       return {
         ...prevState,
         currentValue,
-        // isOpenParen
+        isClosedParen:isClosed
       };
     });
     console.log({
