@@ -78,8 +78,8 @@ export const restrictInvalidSyntax = (initialValue) => {
     currentValue = currentValue.slice(0, -1);
     return { currentValue };
   }
-  // when two different operators are clicked sequentially, replace the previous with current
-  else if (ops === "similar" && currentValue[currentValue.length - 1] !== "-") {
+  // when two different operators are clicked sequentially, replace the previous with current expect it's a factorial (!) or minus (-)
+  else if (ops === "similar" && !['-','!'].includes( currentValue[currentValue.length - 1])) {
     const { currentChar } = getCurrentAndPrevChar(currentValue);
     currentValue = currentValue.slice(0, -2);
     currentValue += currentChar;
@@ -92,7 +92,7 @@ export const restrictInvalidSyntax = (initialValue) => {
  *
  * @param {string} value
  */
-export const isFactorial = (value) => {
+export function isFactorial (value)  {
   const isValid = /^([1-9]\d*|0)!$/.test(value);
   console.log("factorial|:", { isValid });
   return isValid;
