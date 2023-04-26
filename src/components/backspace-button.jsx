@@ -8,7 +8,7 @@ const BackspaceButton = () => {
   const { state, updateState } = useContext(CalculatorContext);
   const isOpenBracket = useCheckIsOpenParen(state.currentValue);
   const buttonRef = useRef(null);
-
+const funcs = ["cos(", "sin(", "log(", "in(", "tan("];
   const handleLongPress = () => {
     console.log("long press");
     updateState((prevState) => ({
@@ -32,7 +32,7 @@ const BackspaceButton = () => {
 
   return (
     <>
-      <div className="grid-box " ref={buttonRef}>
+      <div className="grid-box backspace" ref={buttonRef}>
         <F7Button
           type="button"
           className={`btn btn-colored`}

@@ -1,4 +1,4 @@
-const operators = ["x", "%", "+", "-", "÷", "^", "√", "."];
+const operators = ["x", "%", "!", "+", "-", "÷", "^", "√", "."];
 
 /**
  *
@@ -88,7 +88,15 @@ export const restrictInvalidSyntax = (initialValue) => {
 
   return { currentValue };
 };
-
+/**
+ *
+ * @param {string} value
+ */
+export const isFactorial = (value) => {
+  const isValid = /^([1-9]\d*|0)!$/.test(value);
+  console.log("factorial|:", { isValid });
+  return isValid;
+};
 // let timeoutId;
 
 // function handleLongPress() {

@@ -16,11 +16,15 @@ import {
   cosDependencies,
   sinDependencies,
   create,
+  factorialDependencies,
+  tanDependencies,
+  indexDependencies,
   evaluateDependencies,
 } from "mathjs";
 import SideOperatorButtons from "../components/side-operator-buttons";
 import TopOperatorButtons from "../components/top-operator-buttons";
 import CalcInput from "../components/input";
+import { isFactorial } from "../js/helpers";
 const mathjsDeps = [
   addDependencies,
   subtractDependencies,
@@ -28,9 +32,12 @@ const mathjsDeps = [
   divideDependencies,
   cosDependencies,
   sinDependencies,
+  tanDependencies,
+  indexDependencies,
   expDependencies,
   sqrtDependencies,
   evaluateDependencies,
+  factorialDependencies,
 ];
 const math = create(mathjsDeps, { matrix: false });
 
@@ -59,7 +66,11 @@ const HomePage = () => {
       .replace(/x/g, "*")
       .replace(/÷/g, "/");
     if (valueToEvaluate === "") setOutput(0);
-    if (isNaN(lastChar) || (!isNaN(lastChar) && state.isOpenParen)) return;
+    if (
+      (!isFactorial(valueToEvaluate) && isNaN(lastChar)) ||
+      (!isNaN(lastChar) && state.isOpenParen)
+    )
+      return;
     const valLen = valueToEvaluate.length;
     switch (true) {
       case valLen >= 8 && valLen < 11:

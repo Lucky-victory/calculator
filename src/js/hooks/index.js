@@ -69,3 +69,28 @@ export function useLongPress(ref, callback = () => {}, delay = 1500) {
 
   return null;
 }
+
+export function useParenthesesChecker() {
+  const [isClosed, setIsClosed] = useState(true);
+
+  function checkParentheses(value) {
+    let stack = [];
+
+    for (let i = 0; i < value.length; i++) {
+      if (value[i] === "(") {
+        stack.push("(");
+      } else if (value[i] === ")") {
+        if (stack.length === 0) {
+          setIsClosed(false);
+          return;
+        } else {
+          stack.pop();
+        }
+      }
+    }
+
+    setIsClosed(stack.length === 0);
+  }
+
+  return [isClosed, checkParentheses];
+}
