@@ -147,14 +147,14 @@ const HomePage = () => {
               ></F7Button>
             </div>
   */}
-            <div className="wrapper">
+            <div className="wrappe">
               <div className="grid">
                 {/* <BracketButton></BracketButton> */}
                 <Buttons></Buttons>
+                <div className="operators-container">
+                  <SideOperatorButtons></SideOperatorButtons>
+                </div>
               </div>
-              {/*<div className="operators-container">
-                <SideOperatorButtons></SideOperatorButtons>
-              </div>*/}
             </div>
           </div>
         </div>

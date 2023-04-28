@@ -69,7 +69,11 @@ export function useLongPress(ref, callback = () => {}, delay = 1500) {
 
   return null;
 }
-
+/**
+ *
+ * @param {string} value
+ * @returns
+ */
 export function useParenthesesChecker(value) {
   const [isClosed, setIsClosed] = useState(true);
 
@@ -88,11 +92,11 @@ export function useParenthesesChecker(value) {
         }
       }
     }
-
+    console.log("parenthesis checker:", { value });
     setIsClosed(stack.length === 0);
   }
   useEffect(() => {
-  checkParentheses(value)
-},[value])
-  return [isClosed, checkParentheses];
+    checkParentheses(value);
+  }, [value]);
+  return [isClosed];
 }

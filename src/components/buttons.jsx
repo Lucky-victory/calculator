@@ -5,7 +5,6 @@ import ClearButton from "./clear-button";
 import EqualButton from "./equal-button";
 
 const buttonValues = [
-  
   "÷",
   "x",
   "7",
@@ -25,14 +24,10 @@ const buttons = ["+", "-", "^"];
 const Buttons = (props) => {
   return (
     <>
-    <ClearButton></ClearButton>
+      <ClearButton></ClearButton>
       {buttonValues.map((val, index) => {
         return <Button key={crypto.randomUUID() || index} value={val} />;
       })}
-      {buttons.map((val, index) => {
-        return <Button key={crypto.randomUUID() || index} value={val} />;
-      })}
-<EqualButton></EqualButton>
     </>
   );
 };
