@@ -55,14 +55,14 @@ body {
   display: grid;
   grid-template-columns: repeat(3, minmax(var(--btn-w, 6rem), 1fr));
   grid-template-rows: repeat(5, minmax(var(--btn-w, 6rem), 1fr));
-  grid-gap: 1rem;
+  grid-gap: 0.375rem;
   padding: 1rem;
   padding-right: 1rem;
   flex: 1;
 }
 .grid-box {
-  background: #fff;
-  border-radius: 12px;
+  background: #f3f3f3;
+  
   //height: var(--btn-w, 8rem);
   //box-shadow: 0 5px 12px #0003;
   transition: box-shadow 0.4s;
@@ -71,6 +71,9 @@ body {
     user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
+  }
+  &.stretch{
+    grid-column: span 2;
   }
 }
 .grid-box:hover {
@@ -87,6 +90,7 @@ body {
   justify-content: center;
   box-shadow: none;
   color: #000;
+  border-radius:0;
   &.equal-btn {
     color: #fff;
     background-color: var(--f7-theme-color);
@@ -95,9 +99,7 @@ body {
     color: var(--f7-theme-color);
   }
 }
-.rounded {
-  border-radius: 50%;
-}
+
 .operators-container {
   display: grid;
 
@@ -107,6 +109,9 @@ body {
   flex-shrink: 0;
   gap: 1rem;
   padding: 1rem;
+  > *{
+    background: rgba;
+  }
 }
 
 .top-operators-container {

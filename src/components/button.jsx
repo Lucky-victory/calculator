@@ -37,11 +37,11 @@ const Button = function (props) {
 
   return (
     <>
-      <div className="grid-box">
+      <div className={`grid-box ${btnValue==="0" ? 'stretch':''}`}>
         <F7Button
           type="button"
           onClick={handleClick}
-          className={`btn ${isNaN(btnValue) ? "btn-colored" : ""}`}
+          className={`btn  ${isNaN(btnValue) ? "btn-colored" : ""}`}
           data-value={btnValue}
         >
           {btnValue}

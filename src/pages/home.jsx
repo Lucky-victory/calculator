@@ -136,7 +136,7 @@ const HomePage = () => {
             fontSize={inputFontSize}
           />
           <div className="btns-container">
-           <div className="flex">
+            {/*  <div className="flex">
               <div className="top-operators-container">
                 <TopOperatorButtons></TopOperatorButtons>
               </div>
@@ -146,15 +146,15 @@ const HomePage = () => {
                 className="material-icons-outlined top-btns-toggle"
               ></F7Button>
             </div>
-
+  */}
             <div className="wrapper">
               <div className="grid">
                 {/* <BracketButton></BracketButton> */}
                 <Buttons></Buttons>
               </div>
-              <div className="operators-container">
+              {/*<div className="operators-container">
                 <SideOperatorButtons></SideOperatorButtons>
-              </div>
+              </div>*/}
             </div>
           </div>
         </div>
