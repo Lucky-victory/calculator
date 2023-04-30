@@ -81,7 +81,7 @@ const HomePage = () => {
         break;
 
       default:
-        setInputFontSize(6);
+        setInputFontSize(5);
         break;
     }
     const _output = math.evaluate(valueToEvaluate);
@@ -110,11 +110,20 @@ const HomePage = () => {
     /**
      * @type {Array<string>}
      */
+    let numPart
     const parts = numStr?.split(/([^0-9]+)/); // Splits the string into numeric and non-numeric parts
     return parts
       .map((part) => {
         if (!isNaN(part) && part !== "") {
-          return Number(part).toLocaleString(); // Formats the numeric part with commas
+          numPart=part.split('.');
+          const integerPart = numPart[0]?.replace(/(\d)(?=(\d{3})+$)/g, "$1,");
+          const fractionalPart = numPart[1];
+          console.log({integerPart,fractionalPart});
+          return fractionalPart
+            ? `${integerPart}.${fractionalPart}`
+            : integerPart;
+
+   // Formats the numeric part with commas
         }
         return part; // Returns the non-numeric part as is
       })

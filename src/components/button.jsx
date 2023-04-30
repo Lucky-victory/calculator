@@ -8,8 +8,10 @@ import { useParenthesesChecker } from "../js/hooks";
 
 const Button = function (props) {
   const { state, updateState } = useContext(CalculatorContext);
-  const [isClosed,checkParentheses] = useParenthesesChecker(state.currentValue);
-  
+  const [isClosed, checkParentheses] = useParenthesesChecker(
+    state.currentValue
+  );
+
   const [btnValue, setBtnValue] = useState(props.value);
 
   const handleClick = (evt) => {
@@ -22,12 +24,12 @@ const Button = function (props) {
     setBtnValue(value);
     const newValue = state.currentValue + value;
     const { currentValue } = restrictInvalidSyntax(newValue);
-    checkParentheses(currentValue)
+    // checkParentheses(currentValue);
     updateState((prevState) => {
       return {
         ...prevState,
         currentValue,
-         isClosedParen:isClosed
+        isClosedParen: isClosed,
       };
     });
     console.log({
@@ -37,7 +39,7 @@ const Button = function (props) {
 
   return (
     <>
-      <div className={`grid-box ${btnValue==="0" ? 'stretch':''}`}>
+      <div className={`grid-box`}>
         <F7Button
           type="button"
           onClick={handleClick}

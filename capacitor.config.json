@@ -1,5 +1,5 @@
 {
-  "appId": "com.calculator",
+  "appId": "com.ngdev96.calculator",
   "appName": "calculator",
   "webDir": "www",
   "bundledWebRuntime": false

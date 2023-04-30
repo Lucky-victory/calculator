@@ -5,7 +5,7 @@ const EqualButton = (props) => {
   const handleClick = () => {};
   return (
     <>
-      <div className="grid-box equal-btn-box">
+      <div className="grid-box equal-btn-box ">
         <F7Button type="button" className="btn equal-btn" onClick={handleClick}>
           =
         </F7Button>

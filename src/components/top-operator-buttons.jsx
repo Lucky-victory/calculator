@@ -14,7 +14,9 @@ const TopOperatorButtons = () => {
   const funcs = ["cos", "sin", "log", "in", "tan"];
   const { state, updateState } = useContext(CalculatorContext);
   // const isOpenParen = useCheckIsOpenParen(state.currentValue);
-  const [isClosed,checkParentheses] = useParenthesesChecker(state.currentValue);
+  const [isClosed, checkParentheses] = useParenthesesChecker(
+    state.currentValue
+  );
 
   const handleClick = (evt) => {
     /**
@@ -26,12 +28,12 @@ const TopOperatorButtons = () => {
 
     const newValue = state.currentValue + value;
     const { currentValue } = restrictInvalidSyntax(newValue);
-    checkParentheses(currentValue)
+    // checkParentheses(currentValue)
     updateState((prevState) => {
       return {
         ...prevState,
         currentValue,
-        isClosedParen:isClosed
+        isClosedParen: isClosed,
       };
     });
     console.log({

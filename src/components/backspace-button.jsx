@@ -1,16 +1,21 @@
 import React, { useContext, useRef } from "react";
 import { Icon } from "framework7-react";
 import { CalculatorContext } from "../context/calculator";
-import { useCheckIsOpenParen, useLongPress, useParenthesesChecker } from "../js/hooks";
+import {
+  useCheckIsOpenParen,
+  useLongPress,
+  useParenthesesChecker,
+} from "../js/hooks";
 import { Button as F7Button } from "framework7-react";
-
 
 const BackspaceButton = () => {
   const { state, updateState } = useContext(CalculatorContext);
-  const [isClosed,checkParentheses] = useParenthesesChecker(state.currentValue);
+  const [isClosed, checkParentheses] = useParenthesesChecker(
+    state.currentValue
+  );
 
   const buttonRef = useRef(null);
-const funcs = ["cos(", "sin(", "log(", "in(", "tan("];
+  const funcs = ["cos(", "sin(", "log(", "in(", "tan("];
   const handleLongPress = () => {
     console.log("long press");
     updateState((prevState) => ({
@@ -25,10 +30,10 @@ const funcs = ["cos(", "sin(", "log(", "in(", "tan("];
      * @type {string}
      */
     const currentValue = state.currentValue;
-    checkParentheses(currentValue);
+    // checkParentheses(currentValue);
     updateState((prevState) => ({
       ...prevState,
-      isClosedParen:isClosed, 
+      isClosedParen: isClosed,
       currentValue: currentValue.slice(0, currentValue.length - 1),
     }));
   };

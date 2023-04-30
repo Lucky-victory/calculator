@@ -92,7 +92,7 @@ export function useParenthesesChecker(value) {
         }
       }
     }
-    console.log("parenthesis checker:", { value });
+    // console.log("parenthesis checker:", { value });
     setIsClosed(stack.length === 0);
   }
   useEffect(() => {

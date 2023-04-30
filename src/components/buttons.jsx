@@ -20,7 +20,6 @@ const buttonValues = [
   ".",
 ];
 
-const buttons = ["+", "-", "^"];
 const Buttons = (props) => {
   return (
     <>
@@ -28,6 +27,7 @@ const Buttons = (props) => {
       {buttonValues.map((val, index) => {
         return <Button key={crypto.randomUUID() || index} value={val} />;
       })}
+      <EqualButton></EqualButton>
     </>
   );
 };

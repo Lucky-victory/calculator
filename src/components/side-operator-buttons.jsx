@@ -4,7 +4,7 @@ import React from "react";
 import EqualButton from "./equal-button";
 import ClearButton from "./clear-button";
 
-const buttons = ["+", "-", "^"];
+const buttons = ["+", "-", "%"];
 const SideOperatorButtons = () => {
   return (
     <>
@@ -14,7 +14,7 @@ const SideOperatorButtons = () => {
       {buttons.map((val, index) => {
         return <Button value={val} key={crypto.randomUUID() || index}></Button>;
       })}
-      <EqualButton></EqualButton>
+      {/* <EqualButton></EqualButton> */}
     </>
   );
 };
