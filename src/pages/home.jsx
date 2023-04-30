@@ -13,27 +13,19 @@ import {
   divideDependencies,
   expDependencies,
   sqrtDependencies,
-  cosDependencies,
-  sinDependencies,
   create,
   factorialDependencies,
-  tanDependencies,
-  indexDependencies,
   evaluateDependencies,
 } from "mathjs";
 import SideOperatorButtons from "../components/side-operator-buttons";
 import TopOperatorButtons from "../components/top-operator-buttons";
 import CalcInput from "../components/input";
-import { isFactorial } from "../js/helpers";
+import { isFactorial,format } from "../js/helpers";
 const mathjsDeps = [
   addDependencies,
   subtractDependencies,
   multiplyDependencies,
   divideDependencies,
-  cosDependencies,
-  sinDependencies,
-  tanDependencies,
-  indexDependencies,
   expDependencies,
   sqrtDependencies,
   evaluateDependencies,
@@ -47,7 +39,7 @@ math.import(
       return x * (y / 100);
     },
     "%": function (x, y) {
-      return x * r(y / 100);
+      return x * (y / 100);
     },
   },
   { override: true }
@@ -101,35 +93,7 @@ const HomePage = () => {
     }
     setOutput(resultToDisplay.toLocaleString("en-US"));
   };
-  /**
-   *
-   * @param {string} numStr
-   * @returns
-   */
-  function format(numStr) {
-    /**
-     * @type {Array<string>}
-     */
-    let numPart
-    const parts = numStr?.split(/([^0-9]+)/); // Splits the string into numeric and non-numeric parts
-    return parts
-      .map((part) => {
-        if (!isNaN(part) && part !== "") {
-          numPart=part.split('.');
-          const integerPart = numPart[0]?.replace(/(\d)(?=(\d{3})+$)/g, "$1,");
-          const fractionalPart = numPart[1];
-          console.log({integerPart,fractionalPart});
-          return fractionalPart
-            ? `${integerPart}.${fractionalPart}`
-            : integerPart;
-
-   // Formats the numeric part with commas
-        }
-        return part; // Returns the non-numeric part as is
-      })
-      .join("");
-  }
-
+  
   const handleInputFocus = (evt) => {
     const caretPosition = (evt && evt.selectionStart) || -1;
     updateState((prevState) => ({ ...prevState, caretPosition }));

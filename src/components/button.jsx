@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import { CalculatorContext } from "../context/calculator";
 // import { restrictInvalidSyntax } from "../js/helpers";
 import { Button as F7Button } from "framework7-react";
-import { restrictInvalidSyntax } from "../js/helpers";
+import { validateSyntax } from "../js/helpers";
 import { useParenthesesChecker } from "../js/hooks";
 
 const Button = function (props) {
   const { state, updateState } = useContext(CalculatorContext);
-  const [isClosed, checkParentheses] = useParenthesesChecker(
+  const [isClosed ] = useParenthesesChecker(
     state.currentValue
   );
 
@@ -23,8 +23,7 @@ const Button = function (props) {
     // state.inputRef.current?.focus();
     setBtnValue(value);
     const newValue = state.currentValue + value;
-    const { currentValue } = restrictInvalidSyntax(newValue);
-    // checkParentheses(currentValue);
+    const { currentValue } = validateSyntax(newValue);
     updateState((prevState) => {
       return {
         ...prevState,

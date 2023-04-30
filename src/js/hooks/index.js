@@ -32,7 +32,7 @@ export function useCheckIsOpenParen(currentValue) {
   return openBrackets.length > 0;
 }
 
-export function useLongPress(ref, callback = () => {}, delay = 1500) {
+export function useLongPress(ref, callback = () => {}, delay = 1200) {
   const timeoutRef = useRef(null);
 
   function handleMouseDown(evt) {

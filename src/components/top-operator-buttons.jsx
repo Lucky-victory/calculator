@@ -6,7 +6,7 @@ import ClearButton from "./clear-button";
 import BracketButton from "./bracket-button";
 import { Button as F7Button } from "framework7-react";
 import { CalculatorContext } from "../context/calculator";
-import { restrictInvalidSyntax } from "../js/helpers";
+import { validateSyntax } from "../js/helpers";
 import { useParenthesesChecker } from "../js/hooks";
 
 const TopOperatorButtons = () => {
@@ -27,7 +27,7 @@ const TopOperatorButtons = () => {
     // state.inputRef.current?.focus();
 
     const newValue = state.currentValue + value;
-    const { currentValue } = restrictInvalidSyntax(newValue);
+    const { currentValue } = validateSyntax(newValue);
     // checkParentheses(currentValue)
     updateState((prevState) => {
       return {

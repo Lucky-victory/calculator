@@ -47,7 +47,7 @@ export function getCurrentAndPrevChar(currentValue) {
  * @returns
  */
 
-export const restrictInvalidSyntax = (initialValue) => {
+export const validateSyntax = (initialValue) => {
   let currentValue = initialValue;
 
   const ops = preventDoubleOperator(currentValue);
@@ -79,7 +79,10 @@ export const restrictInvalidSyntax = (initialValue) => {
     return { currentValue };
   }
   // when two different operators are clicked sequentially, replace the previous with current expect it's a factorial (!) or minus (-)
-  else if (ops === "similar" && !['-','!'].includes( currentValue[currentValue.length - 1])) {
+  else if (
+    ops === "similar" &&
+    !["-"].includes(currentValue[currentValue.length - 1])
+  ) {
     const { currentChar } = getCurrentAndPrevChar(currentValue);
     currentValue = currentValue.slice(0, -2);
     currentValue += currentChar;
@@ -92,36 +95,35 @@ export const restrictInvalidSyntax = (initialValue) => {
  *
  * @param {string} value
  */
-export function isFactorial (value)  {
+export function isFactorial(value) {
   const isValid = /^([1-9]\d*|0)!$/.test(value);
-  console.log("factorial|:", { isValid });
+  // console.log("factorial|:", { isValid });
   return isValid;
-};
-// let timeoutId;
+}
 
-// function handleLongPress() {
-//   // Replace this with your desired behavior for the long press event
-//   clearInput();
-// }
+/**
+ *
+ * @param {string} numStr
+ * @returns
+ */
+export function format(numStr) {
+  /**
+   * @type {Array<string>}
+   */
 
-// function handleMouseDown(evt) {
-//   evt.stopPropagation();
-//   timeoutId = setTimeout(handleLongPress, 1200);
-// }
-
-// function handleMouseUp(evt) {
-//   evt.stopPropagation();
-
-//   if (timeoutId) clearTimeout(timeoutId);
-// }
-
-// const element = document.querySelector("#remove-last-btn");
-// const startEvents = ["mousedown", "touchstart"];
-// const endEvents = ["mouseup", "touchend", "touchcancel", "mouseleave"];
-// startEvents.forEach((evtName) => {
-//   element.addEventListener(evtName, handleMouseDown);
-// });
-// endEvents.forEach((evtName) => {
-//   element.addEventListener(evtName, handleMouseUp);
-// });
-const useLongPress = () => {};
+  const parts = numStr?.split(/([^0-9\.]+)/); // Splits the string into numeric and non-numeric parts excluding decimals
+  return parts
+    .map((part) => {
+      if (!isNaN(part) && part !== "") {
+        const numPart = part.split(".");
+        const integerPart = numPart[0]?.replace(/(\d)(?=(\d{3})+$)/g, "$1,");
+        // Formats the numeric part with commas
+        const fractionalPart = numPart[1];
+        return fractionalPart
+          ? `${integerPart}.${fractionalPart}`
+          : integerPart; // if there's a fractional part, concat and return it with the integer part, otherwise return the integer part
+      }
+      return part; // Returns the non-numeric part as is
+    })
+    .join("");
+}
