@@ -35,13 +35,13 @@ export function useCheckIsOpenParen(currentValue) {
 export function useLongPress(ref, callback = () => {}, delay = 1200) {
   const timeoutRef = useRef(null);
 
-  function handleMouseDown(evt) {
-    evt.stopPropagation();
+  function handleMouseDown() {
+  
     timeoutRef.current = setTimeout(callback, delay);
   }
 
-  function handleMouseUp(evt) {
-    evt.stopPropagation();
+  function handleMouseUp() {
+    
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
   }
 

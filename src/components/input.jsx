@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 
 const CalcInput = ({ fontSize, handleInputFocus, value, output }) => {
   const { state } = useContext(CalculatorContext);
+
+  
   return (
     <div className="input-container">
       <div className="input-wrapper">
@@ -16,6 +18,8 @@ const CalcInput = ({ fontSize, handleInputFocus, value, output }) => {
           ref={state.inputRef}
           onFocus={handleInputFocus}
           value={value}
+          
+      
         />
         <span className="indicator"></span>
       </div>

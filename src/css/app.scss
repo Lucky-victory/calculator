@@ -58,25 +58,19 @@ body {
   grid-template-columns: repeat(4, minmax(var(--btn-w, 5rem), 1fr));
   grid-template-rows: repeat(5, minmax(var(--btn-w, 5rem), 1fr));
   grid-gap: 0.15rem;
-  // background: #e3e4e4;
-  // padding: 1rem;
-  // padding-right: 1rem;
+  background: #e9eeee;
   flex: 1;
 }
 .grid-box {
   
-  background: #f5f7f6;
+  background: #f8f8f8;
 
   &.equal-btn-box {
     grid-column: 3/5;
     color: #fff ;
     background-color: var(--f7-theme-color);
   }
-  &.backspace {
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-  }
+  
 }
 
 .btn {
@@ -92,9 +86,7 @@ body {
   color: inherit;
   border-radius: 0;
   
-  &.btn-colored {
-    color: var(--f7-theme-color);
-  }
+  
 }
 
 .operators-container {
@@ -105,9 +97,8 @@ body {
   grid-row: 1/5;
   grid-column: 4;
   gap: 0.15rem;
-  // padding: 1rem;
-  > * {
-    background: rgba(var(--f7-theme-color-rgb), 0.3);
+  > .grid-box {
+    background: rgba(var(--f7-theme-color-rgb), 0.4);
     .btn {
       color: #000;
     }
@@ -129,7 +120,7 @@ body {
 //   font-weight: 500;
 // }
 .input-container {
-  align-items: flex-end;
+  // align-items: flex-end;
   display: flex;
 
   flex-direction: column;
@@ -141,14 +132,15 @@ body {
   width: 100%;
   font-family: inherit;
   padding: 0.5rem;
-  white-space: nowrap;
+  // white-space: nowrap;
   font-size: var(--input-font-size,5rem);
   font-weight: 400;
-  transition: all 0.3s;
+  transition: font-size 0.3s;
   border: none;
   outline: none;
   caret-color: var(--f7-theme-color);
   text-align: right;
+  text-indent: -1rem;
   background: transparent;
 }
 .input-wrapper {

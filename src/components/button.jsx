@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { CalculatorContext } from "../context/calculator";
-// import { restrictInvalidSyntax } from "../js/helpers";
 import { Button as F7Button } from "framework7-react";
 import { validateSyntax } from "../js/helpers";
 import { useParenthesesChecker } from "../js/hooks";
@@ -13,14 +12,18 @@ const Button = function (props) {
   );
 
   const [btnValue, setBtnValue] = useState(props.value);
-
-  const handleClick = (evt) => {
+/**
+ * @type {HTMLInputElement}
+ */
+const handleClick = (evt) => {
+    const inputElem=state.inputRef.current;
     /**
      * @type {HTMLButtonElement}
      */
     const target = evt.target;
     const { value } = target.dataset;
-    // state.inputRef.current?.focus();
+    inputElem?.focus();
+    
     setBtnValue(value);
     const newValue = state.currentValue + value;
     const { currentValue } = validateSyntax(newValue);
@@ -42,7 +45,7 @@ const Button = function (props) {
         <F7Button
           type="button"
           onClick={handleClick}
-          className={`btn  ${isNaN(btnValue) ? "btn-colored" : ""}`}
+          className={`btn`}
           data-value={btnValue}
         >
           {btnValue}

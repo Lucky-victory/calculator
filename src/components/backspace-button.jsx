@@ -40,16 +40,14 @@ const BackspaceButton = () => {
 
   return (
     <>
-      <div className="grid-box backspace" ref={buttonRef}>
+      <div className="grid-box" ref={buttonRef}>
         <F7Button
           type="button"
-          className={`btn btn-colored`}
+          className={`btn material-icons-outlined`}
           onClick={handleClick}
+          iconMaterial="backspace_outlined"
         >
-          <Icon
-            material="backspace_outlined"
-            className="material-icons-outlined"
-          />
+      
         </F7Button>
       </div>
     </>

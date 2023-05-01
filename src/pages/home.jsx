@@ -46,9 +46,23 @@ math.import(
 );
 
 const HomePage = () => {
+  
   const { state, updateState } = useContext(CalculatorContext);
   const [inputFontSize, setInputFontSize] = useState(6);
   const [output, setOutput] = useState(0);
+
+  /**
+   * @type {HTMLInputElement}
+   */
+  const inputElem = state.inputRef.current;
+  const autoScrollInput = () => {
+    if (inputElem) {
+      const {scrollWidth,clientWidth}=inputElem
+      if(scrollWidth > clientWidth){
+      inputElem.scrollLeft = scrollWidth - clientWidth;
+    }
+    }
+  };
   useEffect(() => {
     const lastChar = state.currentValue[state.currentValue.length - 1];
     /**
@@ -76,6 +90,7 @@ const HomePage = () => {
         setInputFontSize(5);
         break;
     }
+    autoScrollInput()
     const _output = math.evaluate(valueToEvaluate);
     updateOutput(_output);
     updateState((prevState) => ({ ...prevState, outputResult: output }));
@@ -93,8 +108,9 @@ const HomePage = () => {
     }
     setOutput(resultToDisplay.toLocaleString("en-US"));
   };
-  
+
   const handleInputFocus = (evt) => {
+    console.log("focus");
     const caretPosition = (evt && evt.selectionStart) || -1;
     updateState((prevState) => ({ ...prevState, caretPosition }));
   };
