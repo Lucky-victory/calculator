@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 
-const operators = ["x", "%", "+", "-", "÷", "^", "√", "."];
 /**
  *
  * @param {string} currentValue
