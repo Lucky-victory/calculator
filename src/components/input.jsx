@@ -3,10 +3,9 @@ import { CalculatorContext } from "../context/calculator";
 
 import PropTypes from "prop-types";
 
-const CalcInput = ({ fontSize, handleInputFocus, value, output }) => {
+const CalcInput = ({ fontSize, updateCaretPosition, value, output }) => {
   const { state } = useContext(CalculatorContext);
 
-  
   return (
     <div className="input-container">
       <div className="input-wrapper">
@@ -16,15 +15,13 @@ const CalcInput = ({ fontSize, handleInputFocus, value, output }) => {
           readOnly
           style={{ fontSize: `${fontSize}rem` }}
           ref={state.inputRef}
-          onFocus={handleInputFocus}
+          onFocus={updateCaretPosition}
           value={value}
-          
-      
         />
         <span className="indicator"></span>
       </div>
-      <output className={`output ${output == 0 ? "hide":""}`} htmlFor="input">
-        { output}
+      <output className={`output ${output == 0 ? "hide" : ""}`} htmlFor="input">
+        {output}
       </output>
     </div>
   );
@@ -33,7 +30,7 @@ const CalcInput = ({ fontSize, handleInputFocus, value, output }) => {
 CalcInput.propTypes = {
   fontSize: PropTypes.number,
   value: PropTypes.string.isRequired,
-  handleInputFocus: PropTypes.func,
+  updateCaretPosition: PropTypes.func,
   output: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 export default CalcInput;

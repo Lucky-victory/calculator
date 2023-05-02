@@ -27,7 +27,7 @@ const MyApp = () => {
   });
   const inputRef = useRef();
   const [state, setState] = useState({
-    caretPosition: 0,
+    caretPosition: -1,
     outputResult: 0,
     currentValue: "",
     isClosedParen: true,

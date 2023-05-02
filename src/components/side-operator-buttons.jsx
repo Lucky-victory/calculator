@@ -5,14 +5,20 @@ import EqualButton from "./equal-button";
 import ClearButton from "./clear-button";
 
 const buttons = ["+", "-", "%"];
-const SideOperatorButtons = () => {
+const SideOperatorButtons = (props) => {
   return (
     <>
       {/* <ClearButton></ClearButton> */}
       <BackspaceButton></BackspaceButton>
 
       {buttons.map((val, index) => {
-        return <Button value={val} key={crypto.randomUUID() || index}></Button>;
+        return (
+          <Button
+            updateCaretPosition={props.updateCaretPosition}
+            value={val}
+            key={crypto.randomUUID() || index}
+          ></Button>
+        );
       })}
       {/* <EqualButton></EqualButton> */}
     </>

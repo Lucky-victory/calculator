@@ -25,7 +25,13 @@ const Buttons = (props) => {
     <>
       <ClearButton></ClearButton>
       {buttonValues.map((val, index) => {
-        return <Button key={crypto.randomUUID() || index} value={val} />;
+        return (
+          <Button
+            updateCaretPosition={props.updateCaretPosition}
+            key={crypto.randomUUID() || index}
+            value={val}
+          />
+        );
       })}
       <EqualButton></EqualButton>
     </>

@@ -2,10 +2,6 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { Page } from "framework7-react";
 import { CalculatorContext } from "../context/calculator";
 import Buttons from "../components/buttons";
-import BackspaceButton from "../components/backspace-button";
-import ClearButton from "../components/clear-button";
-
-import { Button as F7Button, Icon } from "framework7-react";
 import {
   addDependencies,
   subtractDependencies,
@@ -20,7 +16,7 @@ import {
 import SideOperatorButtons from "../components/side-operator-buttons";
 import TopOperatorButtons from "../components/top-operator-buttons";
 import CalcInput from "../components/input";
-import { isFactorial,format } from "../js/helpers";
+import { isFactorial, format, operators } from "../js/helpers";
 const mathjsDeps = [
   addDependencies,
   subtractDependencies,
@@ -46,7 +42,6 @@ math.import(
 );
 
 const HomePage = () => {
-  
   const { state, updateState } = useContext(CalculatorContext);
   const [inputFontSize, setInputFontSize] = useState(6);
   const [output, setOutput] = useState(0);
@@ -57,21 +52,29 @@ const HomePage = () => {
   const inputElem = state.inputRef.current;
   const autoScrollInput = () => {
     if (inputElem) {
-      const {scrollWidth,clientWidth}=inputElem
-      if(scrollWidth > clientWidth){
-      inputElem.scrollLeft = scrollWidth - clientWidth;
-    }
+      const { scrollWidth, clientWidth } = inputElem;
+      if (scrollWidth > clientWidth) {
+        inputElem.scrollLeft = scrollWidth - clientWidth;
+      }
     }
   };
   useEffect(() => {
-    const lastChar = state.currentValue[state.currentValue.length - 1];
     /**
      * @type {string}
      */
-    const valueToEvaluate = state.currentValue
-      .replace(/x/g, "*")
-      .replace(/÷/g, "/");
-    if (valueToEvaluate === "") setOutput(0);
+    const currentValue = state.currentValue;
+    const lastChar = currentValue[currentValue.length - 1];
+
+    const valueToEvaluate = currentValue.replace(/x/g, "*").replace(/÷/g, "/");
+
+    // This checks if the user has clicked any operator, if not, then don't render any result
+    const containsOperator = operators.some((val) =>
+      currentValue.includes(val)
+    );
+    if (valueToEvaluate === "" || !containsOperator) {
+      setOutput(0);
+      return;
+    }
     if (
       (!isFactorial(valueToEvaluate) && isNaN(lastChar)) ||
       (!isNaN(lastChar) && !state.isClosedParen)
@@ -90,7 +93,7 @@ const HomePage = () => {
         setInputFontSize(5);
         break;
     }
-    autoScrollInput()
+    autoScrollInput();
     const _output = math.evaluate(valueToEvaluate);
     updateOutput(_output);
     updateState((prevState) => ({ ...prevState, outputResult: output }));
@@ -109,9 +112,13 @@ const HomePage = () => {
     setOutput(resultToDisplay.toLocaleString("en-US"));
   };
 
-  const handleInputFocus = (evt) => {
-    console.log("focus");
-    const caretPosition = (evt && evt.selectionStart) || -1;
+  const updateCaretPosition = () => {
+    /**
+     * @type {HTMLInputElement}
+     */
+    const target = state.inputRef.current;
+    if (!target) return;
+    const caretPosition = target?.selectionStart || -1;
     updateState((prevState) => ({ ...prevState, caretPosition }));
   };
   return (
@@ -121,7 +128,7 @@ const HomePage = () => {
           <CalcInput
             value={format(state.currentValue)}
             output={output}
-            handleInputFocus={handleInputFocus}
+            updateCaretPosition={updateCaretPosition}
             fontSize={inputFontSize}
           />
           <div className="btns-container">
@@ -139,9 +146,11 @@ const HomePage = () => {
             <div className="wrappe">
               <div className="grid">
                 {/* <BracketButton></BracketButton> */}
-                <Buttons></Buttons>
+                <Buttons updateCaretPosition={updateCaretPosition}></Buttons>
                 <div className="operators-container">
-                  <SideOperatorButtons></SideOperatorButtons>
+                  <SideOperatorButtons
+                    updateCaretPosition={updateCaretPosition}
+                  ></SideOperatorButtons>
                 </div>
               </div>
             </div>
