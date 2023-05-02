@@ -67,21 +67,6 @@ const HomePage = () => {
 
     const valueToEvaluate = currentValue.replace(/x/g, "*").replace(/÷/g, "/");
 
-    // This checks if the user has clicked any operator, if not, then don't render any result
-    const containsOperator = operators.some((val) =>
-      currentValue.includes(val)
-    );
-    if (valueToEvaluate === "" || !containsOperator) {
-      setOutput(0);
-      return;
-    }
-    if (
-      (!isFactorial(valueToEvaluate) && isNaN(lastChar)) ||
-      (!isNaN(lastChar) && !state.isClosedParen)
-    ){
-
-      return;
-    }
     const valLen = valueToEvaluate.length;
     switch (true) {
       case valLen >= 8 && valLen < 11:
@@ -95,6 +80,22 @@ const HomePage = () => {
         setInputFontSize(5);
         break;
     }
+    // This checks if the user has clicked any operator, if not, then don't render any result
+    const containsOperator = operators.some((val) =>
+      currentValue.includes(val)
+      );
+
+    if (valueToEvaluate === "" || !containsOperator) {
+      setOutput(0);
+      return;
+    }
+    if (
+      (!isFactorial(valueToEvaluate) && isNaN(lastChar)) ||
+      (!isNaN(lastChar) && !state.isClosedParen)
+    ){
+      return;
+    }
+    
     autoScrollInput();
     const _output = math.evaluate(valueToEvaluate);
     updateOutput(_output);
