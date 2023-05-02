@@ -128,11 +128,13 @@ body {
   padding-right: 0.8rem;
 }
 .input-container .input {
-  display: block;
+  display: inline-block;
   width: 100%;
   font-family: inherit;
-  padding: 0.5rem;
   // white-space: nowrap;
+  resize: none;
+  height: max-content;
+  max-height: 75px;
   font-size: var(--input-font-size,5rem);
   font-weight: 400;
   transition: font-size 0.3s;
@@ -140,12 +142,12 @@ body {
   outline: none;
   caret-color: var(--f7-theme-color);
   text-align: right;
-  text-indent: -1rem;
   background: transparent;
 }
 .input-wrapper {
   position: relative;
   width: 100%;
+
 }
 .input-wrapper .indicator {
   position: absolute;

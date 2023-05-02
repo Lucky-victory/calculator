@@ -78,8 +78,10 @@ const HomePage = () => {
     if (
       (!isFactorial(valueToEvaluate) && isNaN(lastChar)) ||
       (!isNaN(lastChar) && !state.isClosedParen)
-    )
+    ){
+
       return;
+    }
     const valLen = valueToEvaluate.length;
     switch (true) {
       case valLen >= 8 && valLen < 11:

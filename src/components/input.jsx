@@ -9,7 +9,9 @@ const CalcInput = ({ fontSize, updateCaretPosition, value, output }) => {
   return (
     <div className="input-container">
       <div className="input-wrapper">
-        <input
+        <textarea
+          cols="30"
+          rows="1"
           id="input"
           className="input"
           readOnly
@@ -17,7 +19,7 @@ const CalcInput = ({ fontSize, updateCaretPosition, value, output }) => {
           ref={state.inputRef}
           onFocus={updateCaretPosition}
           value={value}
-        />
+        ></textarea>
         <span className="indicator"></span>
       </div>
       <output className={`output ${output == 0 ? "hide" : ""}`} htmlFor="input">
