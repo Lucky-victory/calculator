@@ -10,20 +10,20 @@ import { Button as F7Button } from "framework7-react";
 
 const BackspaceButton = () => {
   const { state, updateState } = useContext(CalculatorContext);
-  const [isClosed, checkParentheses] = useParenthesesChecker(
-    state.currentValue
-  );
-
+  
   const buttonRef = useRef(null);
-  const funcs = ["cos(", "sin(", "log(", "in(", "tan("];
-  const handleLongPress = () => {
-    console.log("long press");
+    const funcs = ["cos(", "sin(", "log(", "in(", "tan("];
+    const handleLongPress = () => {
+      console.log("long press");
     updateState((prevState) => ({
       ...prevState,
       isClosedParen: true,
       currentValue: "",
     }));
   };
+  const [isClosed] = useParenthesesChecker(
+    state.currentValue
+    );
   useLongPress(buttonRef, handleLongPress);
   const handleClick = () => {
     /**

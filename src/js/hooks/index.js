@@ -28,7 +28,7 @@ export function useCheckIsOpenParen(currentValue) {
     }
   }, [currentValue]);
 
-  return openBrackets.length > 0;
+  return openBrackets.length ===0;
 }
 
 export function useLongPress(ref, callback = () => {}, delay = 1200) {

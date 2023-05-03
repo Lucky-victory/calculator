@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Page } from "framework7-react";
+import { Page, Button as F7Button } from "framework7-react";
 import { CalculatorContext } from "../context/calculator";
 import Buttons from "../components/buttons";
 import {
@@ -11,7 +11,7 @@ import {
   sqrtDependencies,
   create,
   factorialDependencies,
-  evaluateDependencies,
+  evaluateDependencies,ParenthesisNodeDependencies,
 } from "mathjs";
 import SideOperatorButtons from "../components/side-operator-buttons";
 import TopOperatorButtons from "../components/top-operator-buttons";
@@ -25,7 +25,7 @@ const mathjsDeps = [
   expDependencies,
   sqrtDependencies,
   evaluateDependencies,
-  factorialDependencies,
+  factorialDependencies,ParenthesisNodeDependencies
 ];
 const math = create(mathjsDeps, { matrix: false });
 
@@ -40,7 +40,6 @@ math.import(
   },
   { override: true }
 );
-
 const HomePage = () => {
   const { state, updateState } = useContext(CalculatorContext);
   const [inputFontSize, setInputFontSize] = useState(6);
@@ -135,7 +134,7 @@ const HomePage = () => {
             fontSize={inputFontSize}
           />
           <div className="btns-container">
-            {/*  <div className="flex">
+         <div className="flex">
               <div className="top-operators-container">
                 <TopOperatorButtons></TopOperatorButtons>
               </div>
@@ -145,7 +144,7 @@ const HomePage = () => {
                 className="material-icons-outlined top-btns-toggle"
               ></F7Button>
             </div>
-  */}
+
             <div className="wrappe">
               <div className="grid">
                 {/* <BracketButton></BracketButton> */}

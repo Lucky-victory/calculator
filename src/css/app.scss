@@ -10,8 +10,8 @@
   --btn-w: 6rem;
   --btn-font-size:3rem;
   --input-font-size:5rem;
-  --f7-theme-color: #0d887e;
-  --f7-theme-color-rgb: 13, 136, 126;
+  --f7-theme-color: #09b1a3;
+  --f7-theme-color-rgb: 9, 177, 163;
 }
 body {
   font-size: 16px;
@@ -58,13 +58,13 @@ body {
   grid-template-columns: repeat(4, minmax(var(--btn-w, 5rem), 1fr));
   grid-template-rows: repeat(5, minmax(var(--btn-w, 5rem), 1fr));
   grid-gap: 0.15rem;
-  background: #e9eeee;
+  background: #eff0f0;
   flex: 1;
 }
 .grid-box {
   
-  background: #f8f8f8;
-
+  background: #fff;
+border-radius: 1rem;
   &.equal-btn-box {
     grid-column: 3/5;
     color: #fff ;
@@ -96,29 +96,29 @@ body {
   flex-shrink: 0;
   grid-row: 1/5;
   grid-column: 4;
-  gap: 0.15rem;
+  gap: 0.20rem;
   > .grid-box {
-    background: rgba(var(--f7-theme-color-rgb), 0.4);
+    background: rgba(var(--f7-theme-color-rgb), 0.3);
     .btn {
       color: #000;
     }
   }
 }
 
-// .top-operators-container {
-//   display: grid;
-//   grid-template-columns: repeat(4, 5rem);
-//   flex-shrink: 0;
-//   grid-gap: 1rem;
-//   padding-left: 1rem;
-//   padding-right: 0;
-//   // padding-bottom: 1rem;
-//   // background: lightsalmon;
-// }
-// .top-operators-container > * {
-//   font-size: 2.5rem;
-//   font-weight: 500;
-// }
+.top-operators-container {
+  display: grid;
+  grid-template-columns: repeat(4, 5rem);
+  flex-shrink: 0;
+  grid-gap: 1rem;
+  padding-left: 1rem;
+  padding-right: 0;
+  padding-bottom: 1rem;
+  // background: lightsalmon;
+}
+.top-operators-container > * {
+  font-size: 2.5rem;
+  font-weight: 500;
+}
 .input-container {
   // align-items: flex-end;
   display: flex;
@@ -164,6 +164,7 @@ body {
   font-size: 2.75rem;
   min-height: 3rem;
   color: #7f8084;
+  // color: 
   &.hide {
     visibility: hidden;
   }
@@ -185,23 +186,17 @@ body {
   :root{
     --btn-font-size:2.5rem;
 --input-fontsize:4rem;
+--btn-w:2rem;
   }
   .grid {
-    --btn-w:3rem;
-    grid-template-columns: repeat(5, minmax(var(--btn-w, 5rem), 1fr));
-  grid-template-rows: repeat(4, minmax(var(--btn-w, 5rem), 1fr));
-> .grid-box{
-   &.equal-btn-box {
-    // grid-column: 3/6;
-  
-  }
-}
+    grid-template-columns: repeat(5, minmax(var(--btn-w, 3rem), 1fr));
+  grid-template-rows: repeat(4, minmax(var(--btn-w, 3rem), 1fr));
   }
   .operators-container{
   
     grid-column: 5;
     grid-row: 1/5;
-     grid-template-rows: repeat(3, minmax(var(--btn-w, 5rem)));
+     grid-template-rows: repeat(3, minmax(var(--btn-w, 3rem),1fr));
   }
   
   .top-operators-container {

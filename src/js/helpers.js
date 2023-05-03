@@ -1,4 +1,4 @@
-export const operators = ["x", "%", "!", "+", "-", "÷", "^", "√", "."];
+export const operators = ["x", "%", "!", "+", "-", "÷", "^", "√", ".","(",")"];
 
 /**
  *
@@ -74,14 +74,15 @@ export const validateSyntax = (initialValue) => {
     return { currentValue };
   }
   // when the same operator is clicked twice
-  else if (ops === "same") {
+  else if (ops === "same" &&
+    !["-",'(',')'].includes(currentValue[currentValue.length - 1])) {
     currentValue = currentValue.slice(0, -1);
     return { currentValue };
   }
   // when two different operators are clicked sequentially, replace the previous with current expect it's a factorial (!) or minus (-)
   else if (
     ops === "similar" &&
-    !["-"].includes(currentValue[currentValue.length - 1])
+    !["-",'(',')','!'].includes(currentValue[currentValue.length - 1])
   ) {
     const { currentChar } = getCurrentAndPrevChar(currentValue);
     currentValue = currentValue.slice(0, -2);

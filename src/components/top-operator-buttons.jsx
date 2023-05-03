@@ -10,11 +10,11 @@ import { validateSyntax } from "../js/helpers";
 import { useParenthesesChecker } from "../js/hooks";
 
 const TopOperatorButtons = () => {
-  const buttons = ["!", "cos", "sin", "tan", "log", "in", "(", ")"];
+  const buttons = ["!", "^", "(", ")"];
   const funcs = ["cos", "sin", "log", "in", "tan"];
   const { state, updateState } = useContext(CalculatorContext);
   // const isOpenParen = useCheckIsOpenParen(state.currentValue);
-  const [isClosed, checkParentheses] = useParenthesesChecker(
+  const [isClosed] = useParenthesesChecker(
     state.currentValue
   );
 
@@ -24,7 +24,6 @@ const TopOperatorButtons = () => {
      */
     const target = evt.target;
     const { value } = target.dataset;
-    // state.inputRef.current?.focus();
 
     const newValue = state.currentValue + value;
     const { currentValue } = validateSyntax(newValue);
@@ -49,6 +48,7 @@ const TopOperatorButtons = () => {
         return (
           <F7Button
             type="button"
+            className="top-btns"
             onClick={handleClick}
             data-value={funcs.includes(val) ? val + "(" : val}
             key={crypto.randomUUID() || index}
