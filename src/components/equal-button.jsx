@@ -1,6 +1,6 @@
 import React from "react";
 import { Button as F7Button } from "framework7-react";
-
+imd
 const EqualButton = (props) => {
   const handleClick = () => {};
   return (
