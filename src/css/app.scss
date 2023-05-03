@@ -216,3 +216,24 @@ border-radius: 1rem;
     display: none;
   }
 }
+
+@media all and (min-width: 640px) and (min-height:600px){
+  :root{
+    --btn-font-size:2.5rem;
+--input-fontsize:4rem;
+--btn-w:4rem;
+  }
+  .btns-container{
+    margin-bottom: 2rem;
+  }
+  .grid {
+    grid-template-columns: repeat(5, minmax(var(--btn-w, 3rem), 1fr));
+  grid-template-rows: repeat(4, minmax(var(--btn-w, 3rem), 1fr));
+  padding-left: 0;
+
+  .btn{
+    padding: 1rem;
+  }
+  }
+
+}
