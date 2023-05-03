@@ -27,6 +27,7 @@ const TopOperatorButtons = () => {
         ...prevState,
         currentValue,
         isClosedParen: isClosed,
+        canSave: false,
       };
     });
     console.log({

@@ -31,7 +31,7 @@ const MyApp = () => {
     outputResult: 0,
     currentValue: "",
     isClosedParen: true,
-    inputRef,
+    inputRef,canSave:false
   });
   const updateState = (state) => {
     setState(state);

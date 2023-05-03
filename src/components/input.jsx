@@ -8,19 +8,19 @@ const CalcInput = ({ fontSize, updateCaretPosition, value, output }) => {
 
   return (
     <div className="input-container">
-      <div className="input-wrapper">
+      
         <textarea
         rows={1}
           id="input"
-          className="input"
+          className={`input ${state.canSave?'hide':''}`}
           readOnly
           style={{ fontSize: `${fontSize}rem` }}
           ref={state.inputRef}
           onFocus={updateCaretPosition}
           value={value}
         ></textarea>
-      </div>
-      <output className={`output ${output == 0 ? "hide" : ""}`} htmlFor="input">
+      
+      <output className={`output ${output == 0 ? "hide" : ""} ${state.canSave?'large':''}`} htmlFor="input">
         {output}
       </output>
     </div>

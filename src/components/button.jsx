@@ -28,7 +28,7 @@ const Button = (props)=> {
     updateState((prevState) => {
       return {
         ...prevState,
-        currentValue,
+        currentValue,canSave:false,
         isClosedParen: isClosed,
       };
     });

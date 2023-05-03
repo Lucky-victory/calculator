@@ -128,9 +128,8 @@ border-radius: 1rem;
   flex-direction: column;
   flex: 1;
   padding-right: 0.8rem;
-}
-.input-container .input {
-  display: inline-block;
+  .input {
+    display: inline-block;
   width: 100%;
   font-family: inherit;
   // white-space: nowrap;
@@ -139,34 +138,30 @@ border-radius: 1rem;
   max-height: 75px;
   font-size: var(--input-font-size,5rem);
   font-weight: 400;
-  transition: font-size 0.3s;
+  transition: 0.5s ease-out;
+  transform: translateY(0);
   border: none;
   outline: none;
   caret-color: var(--f7-theme-color);
   text-align: right;
   background: transparent;
+  &.hide{
+    transform: translateY(-10rem);
+  visibility: hidden;
+  }
 }
-.input-wrapper {
-  position: relative;
-  width: 100%;
+}
 
-}
-.input-wrapper .indicator {
-  position: absolute;
-  height: 100%;
-  width: 3px;
-  top: 0;
-  right: 0;
-  background: var(--f7-theme-color);
-  border-radius: 25px;
-  animation: blink 1s infinite;
-}
 .output {
   text-align: right;
   font-size: 2.75rem;
   min-height: 3rem;
   color: #7f8084;
-  // color: 
+  transition:font-size 0.4s,transform 0.4s;
+  &.large{
+    font-size: 4.5rem;
+    transform: translateY(-1rem);
+  } 
   &.hide {
     visibility: hidden;
   }

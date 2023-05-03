@@ -16,7 +16,7 @@ const BackspaceButton = () => {
     updateState((prevState) => ({
       ...prevState,
       isClosedParen: true,
-      currentValue: "",
+      currentValue: "",canSave:false
     }));
   };
   const [isClosed] = useParenthesesChecker(
@@ -31,7 +31,7 @@ const BackspaceButton = () => {
 
     updateState((prevState) => ({
       ...prevState,
-      isClosedParen: isClosed,
+      isClosedParen: isClosed,canSave:false,
       currentValue: currentValue.slice(0, currentValue.length - 1),
     }));
   };
