@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Button as F7Button } from "framework7-react";
-import { Storage } from '@capacitor/storage'
+import { Preferences } from '@capacitor/preferences'
 import { CalculatorContext } from "../context/calculator";
 
 import { v4 as uuidv4 } from 'uuid'
@@ -10,7 +10,7 @@ const {state, updateState}=useContext(CalculatorContext);
 
 const saveData=async(key=uuidv4())=>{
   const value=JSON.stringify({date:Date.now(),value:state.currentValue});
-  await Storage.set({
+  await Preferences.set({
     key,value
 })
 }
