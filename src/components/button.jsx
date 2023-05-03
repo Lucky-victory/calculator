@@ -24,6 +24,7 @@ const Button = (props)=> {
     setBtnValue(value);
     const newValue = state.currentValue + value;
     const { currentValue } = validateSyntax(newValue);
+
     updateState((prevState) => {
       return {
         ...prevState,

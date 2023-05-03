@@ -81,12 +81,14 @@ export const validateSyntax = (initialValue) => {
   }
   // when two different operators are clicked sequentially, replace the previous with current expect it's a factorial (!) or minus (-)
   else if (
-    ops === "similar" &&
-    !["-",'(',')','!'].includes(currentValue[currentValue.length - 1])
+    ops === "similar"
   ) {
-    const { currentChar } = getCurrentAndPrevChar(currentValue);
-    currentValue = currentValue.slice(0, -2);
-    currentValue += currentChar;
+    const { currentChar,prevChar } = getCurrentAndPrevChar(currentValue);
+    if (!["-", "(", ")", "!"].includes(prevChar)) {
+      currentValue = currentValue.slice(0, -2);
+      currentValue += currentChar;
+      return { currentValue };
+    }
     return { currentValue };
   }
 

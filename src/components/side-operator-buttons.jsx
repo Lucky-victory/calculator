@@ -1,14 +1,11 @@
 import BackspaceButton from "./backspace-button";
 import Button from "./button";
 import React from "react";
-import EqualButton from "./equal-button";
-import ClearButton from "./clear-button";
 
 const buttons = ["+", "-", "%"];
 const SideOperatorButtons = (props) => {
   return (
     <>
-      {/* <ClearButton></ClearButton> */}
       <BackspaceButton></BackspaceButton>
 
       {buttons.map((val, index) => {
@@ -20,7 +17,7 @@ const SideOperatorButtons = (props) => {
           ></Button>
         );
       })}
-      {/* <EqualButton></EqualButton> */}
+    
     </>
   );
 };

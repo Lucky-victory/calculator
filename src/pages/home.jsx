@@ -79,6 +79,8 @@ const HomePage = () => {
         setInputFontSize(5);
         break;
     }
+    try{
+      
     // This checks if the user has clicked any operator, if not, then don't render any result
     const containsOperator = operators.some((val) =>
       currentValue.includes(val)
@@ -88,17 +90,27 @@ const HomePage = () => {
       setOutput(0);
       return;
     }
+    if(state.isClosedParen){
+      const _output = math.evaluate(valueToEvaluate);
+      updateOutput(_output);
+      updateState((prevState) => ({ ...prevState, outputResult: output }));
+    }
     if (
       (!isFactorial(valueToEvaluate) && isNaN(lastChar)) ||
       (!isNaN(lastChar) && !state.isClosedParen)
-    ){
-      return;
-    }
+      ){
+        return;
+      }
+      autoScrollInput();
     
-    autoScrollInput();
-    const _output = math.evaluate(valueToEvaluate);
-    updateOutput(_output);
-    updateState((prevState) => ({ ...prevState, outputResult: output }));
+
+      const _output = math.evaluate(valueToEvaluate);
+      updateOutput(_output);
+      updateState((prevState) => ({ ...prevState, outputResult: output }));
+    }
+    catch(err){
+if(err)console.log('Invalid syntax');
+    }
   }, [state.currentValue]);
 
   const updateOutput = (result) => {
@@ -134,18 +146,18 @@ const HomePage = () => {
             fontSize={inputFontSize}
           />
           <div className="btns-container">
-         <div className="flex">
+         <div className="flex flex-1">
               <div className="top-operators-container">
                 <TopOperatorButtons></TopOperatorButtons>
               </div>
-              <F7Button
+              {/* <F7Button
                 type="button"
                 iconMaterial="expand_less"
                 className="material-icons-outlined top-btns-toggle"
-              ></F7Button>
+              ></F7Button> */}
             </div>
 
-            <div className="wrappe">
+          
               <div className="grid">
                 {/* <BracketButton></BracketButton> */}
                 <Buttons updateCaretPosition={updateCaretPosition}></Buttons>
@@ -155,7 +167,7 @@ const HomePage = () => {
                   ></SideOperatorButtons>
                 </div>
               </div>
-            </div>
+        
           </div>
         </div>
       </main>
@@ -163,12 +175,3 @@ const HomePage = () => {
   );
 };
 export default HomePage;
-/**
- * 
- * 
- * 
-        <div className="flex wrapper">
-          <div className="flex-col">
-            </div>
-            </div>
- */

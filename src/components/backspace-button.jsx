@@ -1,8 +1,6 @@
 import React, { useContext, useRef } from "react";
-import { Icon } from "framework7-react";
 import { CalculatorContext } from "../context/calculator";
 import {
-  useCheckIsOpenParen,
   useLongPress,
   useParenthesesChecker,
 } from "../js/hooks";
@@ -30,7 +28,7 @@ const BackspaceButton = () => {
      * @type {string}
      */
     const currentValue = state.currentValue;
-    // checkParentheses(currentValue);
+
     updateState((prevState) => ({
       ...prevState,
       isClosedParen: isClosed,

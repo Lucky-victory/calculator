@@ -34,12 +34,12 @@ export function useCheckIsOpenParen(currentValue) {
 export function useLongPress(ref, callback = () => {}, delay = 1200) {
   const timeoutRef = useRef(null);
 
-  function handleMouseDown() {
+  function handleMouseDown(evt) {
   
     timeoutRef.current = setTimeout(callback, delay);
   }
 
-  function handleMouseUp() {
+  function handleMouseUp(evt) {
     
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
   }
@@ -91,7 +91,7 @@ export function useParenthesesChecker(value) {
         }
       }
     }
-    // console.log("parenthesis checker:", { value });
+    console.log("parenthesis checker:", { value,isClosed });
     setIsClosed(stack.length === 0);
   }
   useEffect(() => {

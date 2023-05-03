@@ -23,6 +23,7 @@ body {
 .btns-container {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 .calculator-container {
   height: 100vh;
@@ -39,7 +40,9 @@ body {
   background: #fff;
   
 }
-
+.w-100p{
+  width: 100%;
+}
 .flex {
   display: flex;
 }
@@ -58,11 +61,13 @@ body {
   grid-template-columns: repeat(4, minmax(var(--btn-w, 5rem), 1fr));
   grid-template-rows: repeat(5, minmax(var(--btn-w, 5rem), 1fr));
   grid-gap: 0.15rem;
-  background: #eff0f0;
+  // background: #f3f3f3;
   flex: 1;
+  padding: 0.5rem;
+  padding-top: 0;
 }
 .grid-box {
-  
+  box-shadow: 0px 4px 10px #0003;
   background: #fff;
 border-radius: 1rem;
   &.equal-btn-box {
@@ -107,17 +112,16 @@ border-radius: 1rem;
 
 .top-operators-container {
   display: grid;
-  grid-template-columns: repeat(4, 5rem);
-  flex-shrink: 0;
-  grid-gap: 1rem;
-  padding-left: 1rem;
-  padding-right: 0;
-  padding-bottom: 1rem;
-  // background: lightsalmon;
-}
-.top-operators-container > * {
+  grid-template-columns: repeat(auto-fit, minmax(3.5rem,1fr));
+  flex:1;
+  grid-gap: 0.75rem;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+.top-ops-btn{
   font-size: 2.5rem;
-  font-weight: 500;
+  font-weight: 400;
+  box-shadow: 0 4px 10px #0003;
+}
 }
 .input-container {
   // align-items: flex-end;
@@ -198,9 +202,13 @@ border-radius: 1rem;
     grid-row: 1/5;
      grid-template-rows: repeat(3, minmax(var(--btn-w, 3rem),1fr));
   }
-  
+  .btns-container{
+    flex-direction: row;
+  }
   .top-operators-container {
-    // grid-template-columns: repeat(3, 5rem);
+    
+    padding-right: 0.5rem;
+    margin-bottom: 0;
   }
 
   .top-btns-toggle {
