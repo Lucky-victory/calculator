@@ -40,9 +40,6 @@ body {
   background: #fff;
   
 }
-.w-100p{
-  width: 100%;
-}
 .flex {
   display: flex;
 }
@@ -60,7 +57,7 @@ body {
   display: grid;
   grid-template-columns: repeat(4, minmax(var(--btn-w, 5rem), 1fr));
   grid-template-rows: repeat(5, minmax(var(--btn-w, 5rem), 1fr));
-  grid-gap: 0.15rem;
+  grid-gap: 0.35rem;
   // background: #f3f3f3;
   flex: 1;
   padding: 0.5rem;
@@ -119,7 +116,8 @@ border-radius: 1rem;
   margin-bottom: 0.5rem;
 .top-ops-btn{
   font-size: 2.5rem;
-  font-weight: 400;
+  font-weight: 500;
+   height: auto;
   box-shadow: 0 4px 10px #0003;
 }
 }
@@ -195,6 +193,10 @@ border-radius: 1rem;
   .grid {
     grid-template-columns: repeat(5, minmax(var(--btn-w, 3rem), 1fr));
   grid-template-rows: repeat(4, minmax(var(--btn-w, 3rem), 1fr));
+  padding-left: 0;
+  .btn{
+    padding: 0;
+  }
   }
   .operators-container{
   
@@ -206,9 +208,8 @@ border-radius: 1rem;
     flex-direction: row;
   }
   .top-operators-container {
-    
-    padding-right: 0.5rem;
     margin-bottom: 0;
+  padding-top: 0;
   }
 
   .top-btns-toggle {

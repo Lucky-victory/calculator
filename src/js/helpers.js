@@ -75,7 +75,7 @@ export const validateSyntax = (initialValue) => {
   }
   // when the same operator is clicked twice
   else if (ops === "same" &&
-    !["-",'(',')'].includes(currentValue[currentValue.length - 1])) {
+    !['(',')'].includes(currentValue[currentValue.length - 1])) {
     currentValue = currentValue.slice(0, -1);
     return { currentValue };
   }
@@ -84,7 +84,7 @@ export const validateSyntax = (initialValue) => {
     ops === "similar"
   ) {
     const { currentChar,prevChar } = getCurrentAndPrevChar(currentValue);
-    if (!["-", "(", ")", "!"].includes(prevChar)) {
+    if (![ "(", ")", "!"].includes(prevChar)) {
       currentValue = currentValue.slice(0, -2);
       currentValue += currentChar;
       return { currentValue };
