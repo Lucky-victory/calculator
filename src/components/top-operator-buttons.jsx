@@ -1,5 +1,5 @@
 
-import React, { useState, useContext } from "react";
+import React, {  useContext } from "react";
 import { Button as F7Button } from "framework7-react";
 import { CalculatorContext } from "../context/calculator";
 import { validateSyntax } from "../js/helpers";

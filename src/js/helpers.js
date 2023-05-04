@@ -53,8 +53,7 @@ export const validateSyntax = (initialValue) => {
   const ops = preventDoubleOperator(currentValue);
   if (currentValue.length === 1) {
     if (currentValue.charAt(0) === ".") {
-      currentValue = "0.";
-      return { currentValue };
+      return { currentValue:'0.'};
     }
     if (
       operators.includes(currentValue.charAt(0)) &&
@@ -118,15 +117,31 @@ export function format(numStr) {
   return parts
     .map((part) => {
       if (!isNaN(part) && part !== "") {
+    
         const numPart = part.split(".");
         const integerPart = numPart[0]?.replace(/(\d)(?=(\d{3})+$)/g, "$1,");
         // Formats the numeric part with commas
         const fractionalPart = numPart[1];
-        return fractionalPart
-          ? `${integerPart}.${fractionalPart}`
-          : integerPart; // if there's a fractional part, concat and return it with the integer part, otherwise return the integer part
+        // if there's a fractional part, concat and return it with the integer part, otherwise return the integer part
+        
+           if(fractionalPart)
+            return `${integerPart}.${fractionalPart}`;
+            else if(part.includes('.') && !fractionalPart)
+              return `${integerPart}.`;
+             return integerPart;
+          
+      
       }
       return part; // Returns the non-numeric part as is
     })
     .join("");
+}
+/**
+ This checks if the expression has any operator, if not, then don't render any result
+ * 
+ * @param {string} value 
+ */
+export function containsOperator(value){
+  const ops=operators.filter((op)=>op!=='.')
+  return ops.some((val) => value.includes(val));
 }

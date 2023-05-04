@@ -16,7 +16,7 @@ import {
 import SideOperatorButtons from "../components/side-operator-buttons";
 import TopOperatorButtons from "../components/top-operator-buttons";
 import CalcInput from "../components/input";
-import { isFactorial, format, operators } from "../js/helpers";
+import { isFactorial, format, containsOperator } from "../js/helpers";
 const mathjsDeps = [
   addDependencies,
   subtractDependencies,
@@ -81,12 +81,9 @@ const HomePage = () => {
     }
     try{
       
-    // This checks if the user has clicked any operator, if not, then don't render any result
-    const containsOperator = operators.some((val) =>
-      currentValue.includes(val)
-      );
 
-    if (valueToEvaluate === "" || !containsOperator) {
+      autoScrollInput();
+    if (valueToEvaluate === "" || !containsOperator(currentValue)) {
       setOutput(0);
       return;
     }
@@ -97,11 +94,10 @@ const HomePage = () => {
     }
     if (
       (!isFactorial(valueToEvaluate) && isNaN(lastChar)) ||
-      (!isNaN(lastChar) && !state.isClosedParen)
+      (!isNaN(lastChar))
       ){
         return;
       }
-      autoScrollInput();
     
 
       const _output = math.evaluate(valueToEvaluate);
@@ -159,7 +155,7 @@ if(err)console.log('Invalid syntax');
 
           
               <div className="grid">
-                {/* <BracketButton></BracketButton> */}
+              
                 <Buttons updateCaretPosition={updateCaretPosition}></Buttons>
                 <div className="operators-container">
                   <SideOperatorButtons

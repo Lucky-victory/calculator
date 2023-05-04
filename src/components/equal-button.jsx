@@ -4,7 +4,7 @@ import { Preferences } from '@capacitor/preferences'
 import { CalculatorContext } from "../context/calculator";
 
 import { v4 as uuidv4 } from 'uuid'
-import { operators } from "../js/helpers";
+import { containsOperator } from "../js/helpers";
 const EqualButton = (props) => {
 const {state, updateState}=useContext(CalculatorContext);
 
@@ -15,10 +15,10 @@ const saveData=async(key=uuidv4())=>{
 })
 }
 const handleClick = async () => {
-  // This checks if the expression contains an operator, if not, then don't save the expression
-  const containsOperator = operators.some((val) => state.currentValue.includes(val));
-  updateState((prevState) => ({ ...prevState, canSave: containsOperator }));
-  if (state.currentValue === "" || !containsOperator) return;
+  
+  const containsOp = containsOperator( state.currentValue);
+  updateState((prevState) => ({ ...prevState, canSave: containsOp }));
+  if (state.currentValue === "" || !containsOp) return;
   saveData();
 };
   return (
