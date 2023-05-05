@@ -5,7 +5,6 @@ import { Button as F7Button } from "framework7-react";
 const ClearButton = (props) => {
   const { state, updateState } = useContext(CalculatorContext);
 
-
   const handleClick = () => {
     updateState((prevState) => ({
       ...prevState,

@@ -1,9 +1,8 @@
-
-import HomePage from '../pages/home.jsx';
+import HomePage from "../pages/home.jsx";
 
 var routes = [
   {
-    path: '/',
+    path: "/",
     component: HomePage,
   },
 ];

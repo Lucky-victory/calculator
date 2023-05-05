@@ -277,7 +277,7 @@ border-radius: 5rem;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root,:root.dark, :root .dark {
     --page-color: #f3f3f3;
     --page-bg: #213547;
     --output-color:#acafaf;

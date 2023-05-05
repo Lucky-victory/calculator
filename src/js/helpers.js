@@ -1,4 +1,16 @@
-export const operators = ["x", "%", "!", "+", "-", "÷", "^", "√", ".","(",")"];
+export const operators = [
+  "x",
+  "%",
+  "!",
+  "+",
+  "-",
+  "÷",
+  "^",
+  "√",
+  ".",
+  "(",
+  ")",
+];
 
 /**
  *
@@ -53,7 +65,7 @@ export const validateSyntax = (initialValue) => {
   const ops = preventDoubleOperator(currentValue);
   if (currentValue.length === 1) {
     if (currentValue.charAt(0) === ".") {
-      return { currentValue:'0.'};
+      return { currentValue: "0." };
     }
     if (
       operators.includes(currentValue.charAt(0)) &&
@@ -73,20 +85,24 @@ export const validateSyntax = (initialValue) => {
     return { currentValue };
   }
   // when the same operator is clicked twice
-  else if (ops === "same" &&
-    !['(',')'].includes(currentValue[currentValue.length - 1])) {
+  else if (
+    ops === "same" &&
+    !["(", ")"].includes(currentValue[currentValue.length - 1])
+  ) {
     currentValue = currentValue.slice(0, -1);
     return { currentValue };
   }
   // when two different operators are clicked sequentially, replace the previous with current expect it's a factorial (!) or minus (-)
-  else if (
-    ops === "similar"
-  ) {
-    const { currentChar,prevChar } = getCurrentAndPrevChar(currentValue);
-    if (![ "(", ")", "!"].includes(prevChar)) {
+  else if (ops === "similar") {
+    const { currentChar, prevChar } = getCurrentAndPrevChar(currentValue);
+    if (!["(", ")", "!"].includes(prevChar)) {
       currentValue = currentValue.slice(0, -2);
       currentValue += currentChar;
       return { currentValue };
+    }
+    // prevent non-numeric
+    else if (isNaN(currentChar)) {
+      return { currentValue: currentValue.slice(0, -1) };
     }
     return { currentValue };
   }
@@ -117,20 +133,16 @@ export function format(numStr) {
   return parts
     .map((part) => {
       if (!isNaN(part) && part !== "") {
-    
         const numPart = part.split(".");
         const integerPart = numPart[0]?.replace(/(\d)(?=(\d{3})+$)/g, "$1,");
         // Formats the numeric part with commas
         const fractionalPart = numPart[1];
         // if there's a fractional part, concat and return it with the integer part, otherwise return the integer part
-        
-           if(fractionalPart)
-            return `${integerPart}.${fractionalPart}`;
-            else if(part.includes('.') && !fractionalPart)
-              return `${integerPart}.`;
-             return integerPart;
-          
-      
+
+        if (fractionalPart) return `${integerPart}.${fractionalPart}`;
+        else if (part.includes(".") && !fractionalPart)
+          return `${integerPart}.`;
+        return integerPart;
       }
       return part; // Returns the non-numeric part as is
     })
@@ -141,11 +153,10 @@ export function format(numStr) {
  * 
  * @param {string} value 
  */
-export function containsOperator(value){
-  const ops=operators.filter((op)=>op!=='.')
+export function containsOperator(value) {
+  const ops = operators.filter((op) => op !== ".");
   return ops.some((val) => value.includes(val));
 }
-
 
 /**
  *
@@ -153,25 +164,22 @@ export function containsOperator(value){
  * @returns
  */
 export function parenthesesChecker(value) {
-  let isClosed= true;
+  let isClosed = true;
 
   let stack = [];
 
-
-    for (let i = 0; i < value.length; i++) {
-      if (value[i] === "(") {
-        stack.push("(");
-      } else if (value[i] === ")") {
-        if (stack.length === 0) {
-         return  isClosed=false;
-        
-        } else {
-          stack.pop();
-        }
+  for (let i = 0; i < value.length; i++) {
+    if (value[i] === "(") {
+      stack.push("(");
+    } else if (value[i] === ")") {
+      if (stack.length === 0) {
+        return (isClosed = false);
+      } else {
+        stack.pop();
       }
     }
-    
-    isClosed=stack.length === 0;
-    return isClosed
-  
+  }
+
+  isClosed = stack.length === 0;
+  return isClosed;
 }

@@ -3,13 +3,11 @@ import Button from "./button";
 import React from "react";
 
 const buttonValues = [
-
-
   { icon: "add", value: "+" },
   { icon: "percent", value: "%" },
   { icon: "remove", value: "-" },
 ];
-const SideOperatorButtons = (props) => { 
+const SideOperatorButtons = (props) => {
   return (
     <>
       <BackspaceButton></BackspaceButton>

@@ -11,7 +11,8 @@ import {
   sqrtDependencies,
   create,
   factorialDependencies,
-  evaluateDependencies,ParenthesisNodeDependencies,
+  evaluateDependencies,
+  ParenthesisNodeDependencies,
 } from "mathjs";
 import SideOperatorButtons from "../components/side-operator-buttons";
 import TopOperatorButtons from "../components/top-operator-buttons";
@@ -25,7 +26,8 @@ const mathjsDeps = [
   expDependencies,
   sqrtDependencies,
   evaluateDependencies,
-  factorialDependencies,ParenthesisNodeDependencies
+  factorialDependencies,
+  ParenthesisNodeDependencies,
 ];
 const math = create(mathjsDeps, { matrix: false });
 
@@ -79,33 +81,26 @@ const HomePage = () => {
         setInputFontSize(5);
         break;
     }
-    try{
-      
-
+    try {
+      console.log({ isClosed: state.isClosedParen });
       autoScrollInput();
-    if (valueToEvaluate === "" || !containsOperator(currentValue)) {
-      setOutput(0);
-      return;
-    }
-    if(state.isClosedParen){
-      const _output = math.evaluate(valueToEvaluate);
-      updateOutput(_output);
-      updateState((prevState) => ({ ...prevState, outputResult: output }));
-    }
-    if (
-      (!isFactorial(valueToEvaluate) && isNaN(lastChar)) ||
-      (!isNaN(lastChar))
-      ){
+      if (valueToEvaluate === "" || !containsOperator(currentValue)) {
+        setOutput(0);
         return;
       }
-    
+      if (
+        !isFactorial(valueToEvaluate) &&
+        isNaN(lastChar) &&
+        !state.isClosedParen
+      ) {
+        return;
+      }
 
       const _output = math.evaluate(valueToEvaluate);
       updateOutput(_output);
       updateState((prevState) => ({ ...prevState, outputResult: output }));
-    }
-    catch(err){
-if(err)console.log('Invalid syntax');
+    } catch (err) {
+      if (err) console.log("Invalid syntax");
     }
   }, [state.currentValue]);
 
@@ -142,7 +137,7 @@ if(err)console.log('Invalid syntax');
             fontSize={inputFontSize}
           />
           <div className="btns-container">
-         <div className="flex flex-1">
+            <div className="flex flex-1">
               <div className="top-operators-container">
                 <TopOperatorButtons></TopOperatorButtons>
               </div>
@@ -153,17 +148,14 @@ if(err)console.log('Invalid syntax');
               ></F7Button> */}
             </div>
 
-          
-              <div className="grid">
-              
-                <Buttons updateCaretPosition={updateCaretPosition}></Buttons>
-                <div className="operators-container">
-                  <SideOperatorButtons
-                    updateCaretPosition={updateCaretPosition}
-                  ></SideOperatorButtons>
-                </div>
+            <div className="grid">
+              <Buttons updateCaretPosition={updateCaretPosition}></Buttons>
+              <div className="operators-container">
+                <SideOperatorButtons
+                  updateCaretPosition={updateCaretPosition}
+                ></SideOperatorButtons>
               </div>
-        
+            </div>
           </div>
         </div>
       </main>

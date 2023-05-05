@@ -1,13 +1,13 @@
 import React, { useRef, useState } from "react";
 import { f7, f7ready, App, View } from "framework7-react";
-import {getDevice} from 'framework7'
+import { getDevice } from "framework7";
 import routes from "../js/routes";
 import store from "../js/store";
 import { CalculatorContext } from "../context/calculator";
-import { App as CapacitorApp } from '@capacitor/app';
+import { App as CapacitorApp } from "@capacitor/app";
 
-import {capacitorApp } from '../js/capacitor-app'
-const device=getDevice();
+import { capacitorApp } from "../js/capacitor-app";
+const device = getDevice();
 const MyApp = () => {
   // Framework7 Parameters
   const f7params = {
@@ -27,16 +27,16 @@ const MyApp = () => {
 
   f7ready(() => {
     // Call F7 APIs here
-    if(device.capacitor) {
-
-      capacitorApp.init(f7)
-      document.addEventListener('backbutton',()=>{handleAppExit()})
+    if (device.capacitor) {
+      capacitorApp.init(f7);
+      document.addEventListener("backbutton", () => {
+        handleAppExit();
+      });
     }
   });
 
-  function handleAppExit(){
-    
-    CapacitorApp.exitApp()
+  function handleAppExit() {
+    CapacitorApp.exitApp();
   }
   const inputRef = useRef();
   const [state, setState] = useState({
@@ -44,7 +44,8 @@ const MyApp = () => {
     outputResult: 0,
     currentValue: "",
     isClosedParen: true,
-    inputRef,canSave:false
+    inputRef,
+    canSave: false,
   });
   const updateState = (state) => {
     setState(state);

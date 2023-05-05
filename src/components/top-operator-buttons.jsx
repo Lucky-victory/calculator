@@ -1,16 +1,11 @@
-
-import React, {  useContext } from "react";
+import React, { useContext } from "react";
 import { Button as F7Button } from "framework7-react";
 import { CalculatorContext } from "../context/calculator";
-import { validateSyntax } from "../js/helpers";
-import { useParenthesesChecker } from "../js/hooks";
+import { parenthesesChecker, validateSyntax } from "../js/helpers";
 
 const TopOperatorButtons = () => {
   const buttons = ["!", "^", "(", ")"];
   const { state, updateState } = useContext(CalculatorContext);
-  const [isClosed] = useParenthesesChecker(
-    state.currentValue
-  );
 
   const handleClick = (evt) => {
     /**
@@ -21,7 +16,8 @@ const TopOperatorButtons = () => {
 
     const newValue = state.currentValue + value;
     const { currentValue } = validateSyntax(newValue);
-  
+
+    const isClosed = parenthesesChecker(currentValue);
     updateState((prevState) => {
       return {
         ...prevState,
