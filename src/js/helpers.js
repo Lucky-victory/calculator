@@ -62,6 +62,7 @@ export function getCurrentAndPrevChar(currentValue) {
 export const validateSyntax = (initialValue) => {
   let currentValue = initialValue;
 
+
   const ops = preventDoubleOperator(currentValue);
   if (currentValue.length === 1) {
     if (currentValue.charAt(0) === ".") {
@@ -92,7 +93,7 @@ export const validateSyntax = (initialValue) => {
     currentValue = currentValue.slice(0, -1);
     return { currentValue };
   }
-  // when two different operators are clicked sequentially, replace the previous with current expect it's a factorial (!) or minus (-)
+  // when two different operators are clicked sequentially, replace the previous with current except it's a factorial (!) or parenthesis
   else if (ops === "similar") {
     const { currentChar, prevChar } = getCurrentAndPrevChar(currentValue);
     if (!["(", ")", "!"].includes(prevChar)) {
@@ -100,8 +101,8 @@ export const validateSyntax = (initialValue) => {
       currentValue += currentChar;
       return { currentValue };
     }
-    // prevent non-numeric
-    else if (isNaN(currentChar)) {
+    // prevent non-numeric ')' and operators immediately after an opening parenthesis
+    else if (prevChar=='(' && isNaN(currentChar)) {
       return { currentValue: currentValue.slice(0, -1) };
     }
     return { currentValue };
@@ -115,7 +116,7 @@ export const validateSyntax = (initialValue) => {
  */
 export function isFactorial(value) {
   const isValid = /^([1-9]\d*|0)!$/.test(value);
-  // console.log("factorial|:", { isValid });
+
   return isValid;
 }
 
