@@ -5,31 +5,32 @@ import ClearButton from "./clear-button";
 import EqualButton from "./equal-button";
 
 const buttonValues = [
-  "÷",
-  "x",
-  "7",
-  "8",
-  "9",
-  "4",
-  "5",
-  "6",
-  "1",
-  "2",
-  "3",
-  "0",
-  ".",
+  {icon:null,value:"÷"},
+  {icon:'close',value:"x"},
+  {icon:null,value:"7"},
+  {icon:null,value:"8"},
+  {icon:null,value:"9"},
+  {icon:null,value:"4"},
+  {icon:null,value:"5"},
+  {icon:null,value:"6"},
+  {icon:null,value:"1"},
+  {icon:null,value:"2"},
+  {icon:null,value:"3"},
+  {icon:null,value:"0"},
+  {icon:null,value:"."},
 ];
 
 const Buttons = (props) => {
   return (
     <>
       <ClearButton></ClearButton>
-      {buttonValues.map((val, index) => {
+      {buttonValues.map((btnVal, index) => {
         return (
-          <Button
+          <Button 
+          icon={btnVal?.icon}
             updateCaretPosition={props.updateCaretPosition}
             key={crypto.randomUUID() || index}
-            value={val}
+            value={btnVal.value}
           />
         );
       })}

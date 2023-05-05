@@ -18,7 +18,9 @@ const Button = (props)=> {
     /**
      * @type {HTMLButtonElement}
      */
-    const target = evt.target;
+
+    let target = evt.target;
+    if(target.nodeName!=='BUTTON') target=target.parentElement;
     const { value } = target.dataset;
 
     setBtnValue(value);
@@ -40,11 +42,13 @@ const Button = (props)=> {
       <div className={`grid-box`}>
         <F7Button
           type="button"
-          onClick={handleClick}
-          className={`btn`}
+          iconMaterial={props?.icon}
+
+          onClick ={handleClick}
+          className={`btn  ${props?.icon?'material-icons-outlined':''}`}
           data-value={btnValue}
         >
-          {btnValue}
+          {!props?.icon && btnValue}
         </F7Button>
       </div>
     </>

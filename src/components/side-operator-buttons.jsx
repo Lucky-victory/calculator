@@ -2,22 +2,28 @@ import BackspaceButton from "./backspace-button";
 import Button from "./button";
 import React from "react";
 
-const buttons = ["+", "-", "%"];
-const SideOperatorButtons = (props) => {
+const buttonValues = [
+
+
+  { icon: "add", value: "+" },
+  { icon: "percent", value: "%" },
+  { icon: "remove", value: "-" },
+];
+const SideOperatorButtons = (props) => { 
   return (
     <>
       <BackspaceButton></BackspaceButton>
 
-      {buttons.map((val, index) => {
+      {buttonValues.map((btnVal, index) => {
         return (
           <Button
+            icon={btnVal?.icon}
             updateCaretPosition={props.updateCaretPosition}
-            value={val}
             key={crypto.randomUUID() || index}
-          ></Button>
+            value={btnVal.value}
+          />
         );
       })}
-    
     </>
   );
 };

@@ -10,7 +10,7 @@ export const capacitorApp = {
       if (window.Capacitor.Plugins && window.Capacitor.Plugins.SplashScreen) {
         window.Capacitor.Plugins.SplashScreen.hide();
       }
-    }, 500);
+    }, 1200);
   },
   /*
   This method prevents back button tap to exit from app on android.

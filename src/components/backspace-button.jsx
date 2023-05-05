@@ -38,7 +38,7 @@ const BackspaceButton = () => {
 
   return (
     <>
-      <div className="grid-box" ref={buttonRef}>
+      <div className="grid-box " ref={buttonRef}>
         <F7Button 
           type="button"
           className={`btn material-icons-outlined`}

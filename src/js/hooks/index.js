@@ -68,6 +68,7 @@ export function useLongPress(ref, callback = () => {}, delay = 1200) {
 
   return null;
 }
+
 /**
  *
  * @param {string} value

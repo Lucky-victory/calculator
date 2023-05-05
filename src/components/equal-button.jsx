@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Button as F7Button } from "framework7-react";
+import { Button as F7Button, Icon } from "framework7-react";
 import { Preferences } from '@capacitor/preferences'
 import { CalculatorContext } from "../context/calculator";
 
@@ -24,8 +24,14 @@ const handleClick = async () => {
   return (
     <>
       <div className="grid-box equal-btn-box ">
-        <F7Button type="button" className="btn equal-btn" onClick={handleClick}>
-          =
+        <F7Button
+          
+          type="button"
+          className="btn equal-btn"
+          onClick={handleClick}
+        >
+          <span className="dashes"></span>
+        <span className="dashes"></span>
         </F7Button>
       </div>
     </>

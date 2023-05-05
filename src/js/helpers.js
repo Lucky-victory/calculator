@@ -145,3 +145,33 @@ export function containsOperator(value){
   const ops=operators.filter((op)=>op!=='.')
   return ops.some((val) => value.includes(val));
 }
+
+
+/**
+ *
+ * @param {string} value
+ * @returns
+ */
+export function parenthesesChecker(value) {
+  let isClosed= true;
+
+  let stack = [];
+
+
+    for (let i = 0; i < value.length; i++) {
+      if (value[i] === "(") {
+        stack.push("(");
+      } else if (value[i] === ")") {
+        if (stack.length === 0) {
+         return  isClosed=false;
+        
+        } else {
+          stack.pop();
+        }
+      }
+    }
+    
+    isClosed=stack.length === 0;
+    return isClosed
+  
+}

@@ -6,7 +6,7 @@ import store from "../js/store";
 import { CalculatorContext } from "../context/calculator";
 import { App as CapacitorApp } from '@capacitor/app';
 
-import {capacitorApp } from '../js/capacitor'
+import {capacitorApp } from '../js/capacitor-app'
 const device=getDevice();
 const MyApp = () => {
   // Framework7 Parameters

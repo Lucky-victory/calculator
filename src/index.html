@@ -40,12 +40,15 @@
 
     <script type="module" src="./js/app.js"></script>
     <script>
+      
       // Check that service workers are supported
       if ("serviceWorker" in navigator) {
-        // Use the window load event to keep the page load performant
-        window.addEventListener("load", () => {
-          navigator.serviceWorker.register("./sw.js");
-        });
+          if('Capacitor' in window && !window.Capacitor?.isNative){
+          // Use the window load event to keep the page load performant
+          window.addEventListener("load", () => {
+            navigator.serviceWorker.register("./sw.js");
+          });
+        }
       }
     </script>
   </body>
