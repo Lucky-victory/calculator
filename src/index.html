@@ -43,8 +43,9 @@
       
       // Check that service workers are supported
       if ("serviceWorker" in navigator) {
-          if('Capacitor' in window && !window.Capacitor?.isNative){
-          // Use the window load event to keep the page load performant
+        //Check that it's not a Native app
+          if('Capacitor' in window && window.Capacitor?.platform==='web'){
+          
           window.addEventListener("load", () => {
             navigator.serviceWorker.register("./sw.js");
           });

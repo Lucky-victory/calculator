@@ -8,7 +8,7 @@
     "scripts": {
         "start": "npm run dev",
         "dev": "cross-env NODE_ENV=development vite",
-        "build": "cross-env NODE_ENV=production vite build && npm run build-pwa",
+        "build": "cross-env NODE_ENV=production vite build",
         "ionic:build": "npm run build",
         "ionic:serve": "npm run start",
         "deploy": "npm run build && npm run build-pwa",
