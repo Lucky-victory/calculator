@@ -15,7 +15,7 @@ const ClearButton = (props) => {
     }));
   };
   return (
-    <div className="grid-box">
+    <div className="grid-box btn-primary">
       <F7Button
         type="button"
         className={`btn btn-colored`}

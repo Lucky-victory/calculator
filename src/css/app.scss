@@ -10,8 +10,8 @@
   --btn-w: 6rem;
   --btn-font-size:3rem;
   --input-font-size:5rem;
-  --f7-theme-color: #048697!important;
-  --f7-theme-color-rgb: 6, 4, 151 !important;
+  --f7-theme-color: #04978b!important;
+  --f7-theme-color-rgb: 4, 151, 139 !important;
 }
 body {
   font-size: 16px;
@@ -107,7 +107,12 @@ border-radius: 5rem;
   
   
 }
-
+.btn-primary{
+  // background: rgba(var(--f7-theme-color-rgb), 0.3);
+    .btn {
+      color: var(--f7-theme-color);
+    }
+}
 .operators-container {
   display: grid;
 
@@ -116,12 +121,7 @@ border-radius: 5rem;
   grid-row: 1/5;
   grid-column: 4;
   gap: 0.45rem;
-  > .grid-box {
-    background: rgba(var(--f7-theme-color-rgb), 0.3);
-    .btn {
-      color: #000;
-    }
-  }
+  
 }
 
 .top-operators-container {
@@ -129,7 +129,7 @@ border-radius: 5rem;
   grid-template-columns: repeat(auto-fit, minmax(3.5rem,1fr));
   flex:1;
   grid-gap: 0.75rem;
-  padding: 0.5rem;
+  padding: 0.45rem;
   margin-bottom: 0.5rem;
 .top-ops-btn{
   font-size: 2.5rem;

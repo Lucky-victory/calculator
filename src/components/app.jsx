@@ -14,7 +14,7 @@ const MyApp = () => {
     name: "Calculator", // App name
     theme: "auto", // Automatic theme detection
     colors: {
-      primary: "#09b1a3",
+      primary: "#04978b",
     },
     touch: {
       tapHold: true, //enable tap hold events

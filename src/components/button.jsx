@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import { CalculatorContext } from "../context/calculator";
 import { Button as F7Button } from "framework7-react";
-import { validateSyntax } from "../js/helpers";
+import { containsOperator, validateSyntax } from "../js/helpers";
 import { useParenthesesChecker } from "../js/hooks";
 
 const Button = (props)=> {
@@ -39,7 +39,7 @@ const Button = (props)=> {
 
   return (
     <>
-      <div className={`grid-box`}>
+      <div className={`grid-box ${containsOperator(btnValue)?'btn-primary':''}`}>
         <F7Button
           type="button"
           iconMaterial={props?.icon}
