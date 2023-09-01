@@ -10,13 +10,18 @@ const buttonValues = [
 const SideOperatorButtons = (props) => {
   return (
     <>
-      <BackspaceButton></BackspaceButton>
+      <BackspaceButton
+          updateCursorPosition={props.updateCursorPosition}
+            
+          updateCursorIndicatorPosition={props.updateCursorIndicatorPosition}></BackspaceButton>
 
       {buttonValues.map((btnVal, index) => {
         return (
           <Button
             icon={btnVal?.icon}
-            updateCaretPosition={props.updateCaretPosition}
+            updateCursorPosition={props.updateCursorPosition}
+            
+            updateCursorIndicatorPosition={props.updateCursorIndicatorPosition}
             key={crypto.randomUUID() || index}
             value={btnVal.value}
           />

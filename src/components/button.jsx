@@ -10,13 +10,22 @@ import {
 
 const Button = (props) => {
   const { state, updateState } = useContext(CalculatorContext);
+const input=state?.inputRef?.current;
 
   const [btnValue, setBtnValue] = useState(props.value);
   /**
    * @type {HTMLInputElement}
    */
   const handleClick = (evt) => {
-    props.updateCaretPosition();
+      /**
+     * @type {HTMLInputElement}
+     */
+        const input = state.inputRef.current;
+
+          const cursorPosition = input?.selectionStart || -1;
+          props.updateCursorPosition(cursorPosition);
+          props.updateCursorIndicatorPosition();
+        
     
     /**
      * @type {HTMLButtonElement}
@@ -27,17 +36,18 @@ const Button = (props) => {
     const { value } = target.dataset;
 
     setBtnValue(value);
-    const newValue = state.currentValue + value;
+    const newValue = state.currentValue.substring(0,cursorPosition) + value+state.currentValue.substring(cursorPosition);
     const { currentValue } = validateSyntax(newValue);
     const isClosed = parenthesesChecker(currentValue);
     updateState((prevState) => {
       return {
-        ...prevState,
+        ...prevState,cursorPosition,
         currentValue,
         canSave: false,
         isClosedParen: isClosed,
       };
     });
+    input.setSelectionRange(cursorPosition+1,cursorPosition+1)
   };
 
   return (

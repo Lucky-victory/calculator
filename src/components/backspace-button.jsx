@@ -5,7 +5,7 @@ import { Button as F7Button } from "framework7-react";
 import { parenthesesChecker } from "../js/helpers";
 import { Dom7} from 'framework7'
 const $$=Dom7;
-const BackspaceButton = () => {
+const BackspaceButton = (props) => {
   const { state, updateState } = useContext(CalculatorContext);
 
   const buttonRef = useRef(null);
@@ -23,18 +23,32 @@ const selector='#backspace-btn'
   useLongPress(selector, handleLongPress);
 
   const handleClick = () => {
+      /**
+     * @type {HTMLInputElement}
+     */
+      const input = state.inputRef.current;
+
+      const cursorPosition = input?.selectionStart || state.cursorPosition;
+      props.updateCursorPosition(cursorPosition);
+      props.updateCursorIndicatorPosition();
+    
+
     /**
      * @type {string}
      */
     const currentValue = state.currentValue;
-    const updatedValue = currentValue.slice(0, currentValue.length - 1);
-    const isClosed = parenthesesChecker(updatedValue);
-    updateState((prevState) => ({
-      ...prevState,
-      isClosedParen: isClosed,
-      canSave: false,
-      currentValue: updatedValue, 
-    }));
+    if(cursorPosition > 0){
+
+      const updatedValue = currentValue.substring(0, cursorPosition - 1) + currentValue.substring(cursorPosition);
+      const isClosed = parenthesesChecker(updatedValue);
+      updateState((prevState) => ({
+        ...prevState,cursorPosition,
+        isClosedParen: isClosed,
+        canSave: false,
+        currentValue: updatedValue, 
+      }));
+      input.setSelectionRange(cursorPosition - 1,cursorPosition -1)
+    }
   };
 
   return (

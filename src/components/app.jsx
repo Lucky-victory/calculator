@@ -39,12 +39,13 @@ const MyApp = () => {
     CapacitorApp.exitApp();
   }
   const inputRef = useRef();
+  const cursorIndicatorRef = useRef();
   const [state, setState] = useState({
-    caretPosition: -1,
+    cursorPosition: -1,
     outputResult: 0,
     currentValue: "",
     isClosedParen: true,
-    inputRef,
+    inputRef,cursorIndicatorRef,
     canSave: false,
   });
   const updateState = (state) => {

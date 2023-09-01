@@ -117,14 +117,22 @@ const HomePage = () => {
     setOutput(resultToDisplay.toLocaleString("en-US"));
   };
 
-  const updateCaretPosition = () => {
-    /**
+  const updateCursorIndicatorPosition = () => {
+  /**
      * @type {HTMLInputElement}
      */
-    const target = state.inputRef.current;
-    if (!target) return;
-    const caretPosition = target?.selectionStart || -1;
-    updateState((prevState) => ({ ...prevState, caretPosition }));
+  const input = state.inputRef.current;
+  const cursorIndicator= state.cursorIndicatorRef.current;
+
+  const cursorPosition = input?.selectionStart;
+  const rect=input.getBoundingClientRect()
+  const left=rect.left + cursorPosition * 10
+  cursorIndicator.style.left=left+'px'
+
+  };
+  const updateCursorPosition = (pos=-1) => {
+
+    updateState((prevState) => ({ ...prevState, cursorPosition:pos }));
   };
   return (
     <Page name="home">
@@ -133,7 +141,8 @@ const HomePage = () => {
           <CalcInput
             value={format(state.currentValue)}
             output={output}
-            updateCaretPosition={updateCaretPosition}
+            updateCursorPosition={updateCursorPosition}
+            updateCursorIndicatorPosition={updateCursorIndicatorPosition}
             fontSize={inputFontSize}
           />
           <div className="btns-container">
@@ -149,10 +158,12 @@ const HomePage = () => {
             </div>
 
             <div className="grid">
-              <Buttons updateCaretPosition={updateCaretPosition}></Buttons>
+              <Buttons updateCursorPosition={updateCursorPosition} 
+            updateCursorIndicatorPosition={updateCursorIndicatorPosition}></Buttons>
               <div className="operators-container">
                 <SideOperatorButtons
-                  updateCaretPosition={updateCaretPosition}
+                  updateCursorPosition={updateCursorPosition} 
+                  updateCursorIndicatorPosition={updateCursorIndicatorPosition}
                 ></SideOperatorButtons>
               </div>
             </div>

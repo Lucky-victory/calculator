@@ -170,15 +170,14 @@ border-radius: 5rem;
 }
 }
 .input-container {
-
   display: flex;
-
+position: relative;
   flex-direction: column;
   flex: 1;
   padding-right: 0.8rem;
   .input {
     display: inline-block;
-  width: 100%;
+ 
   font-family: inherit;
   white-space: nowrap;
   resize: none;
@@ -193,13 +192,28 @@ border-radius: 5rem;
   caret-color: var(--f7-theme-color);
   text-align: right;
   background: transparent;
+  z-index: 20;
   &.hide{
     transform: translateY(-10rem);
   visibility: hidden;
   }
 }
+  .indicator{
+    position: absolute;
+    height: 100%;
+    width: 2px;
+    background: var(--f7-theme-color);
+    animation: blink 1s step-end infinite;
+  }
 }
-
+@keyframes blink {
+  0%,100%{
+    opacity: 0;
+  }
+  50%{
+    opacity: 1;
+  }
+}
 .output {
   text-align: right;
   font-size: 2.75rem;
