@@ -1,37 +1,22 @@
 import { useEffect, useRef } from "react";
-
-export function useLongPress(ref, callback = () => {}, delay = 1200) {
-  const timeoutRef = useRef(null);
-
-  function handleMouseDown(evt) {
-    timeoutRef.current = setTimeout(callback, delay);
-  }
-
-  function handleMouseUp(evt) {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-  }
+import {Dom7} from 'framework7';
+const $$=Dom7;
+export function useLongPress(selector, callback = () => {}) {
+  
 
   useEffect(() => {
-    if (!ref || !ref.current) return;
+    if (!selector) return;
 
-    const startEvents = ["mousedown", "touchstart"];
-    const endEvents = ["mouseup", "touchend", "touchcancel", "mouseleave"];
-    startEvents.forEach((evtName) => {
-      ref.current?.addEventListener(evtName, handleMouseDown);
-    });
-    endEvents.forEach((evtName) => {
-      ref.current?.addEventListener(evtName, handleMouseUp);
-    });
+  
+      $$(selector).on('taphold', callback);
+     
 
     return () => {
-      startEvents.forEach((evtName) => {
-        ref.current?.removeEventListener(evtName, handleMouseDown);
-      });
-      endEvents.forEach((evtName) => {
-        ref.current?.removeEventListener(evtName, handleMouseUp);
-      });
-    };
-  }, [ref, callback, delay]);
+     
+        $$(selector).off('taphold', callback);
+
+    }
+  }, [selector, callback]);
 
   return null;
 }

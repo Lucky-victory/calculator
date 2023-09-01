@@ -150,7 +150,7 @@ export function format(numStr) {
     .join("");
 }
 /**
- This checks if the expression has any operator, if not, then don't render any result
+ This checks if the expression has any operator
  * 
  * @param {string} value 
  */

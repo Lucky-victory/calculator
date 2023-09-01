@@ -17,6 +17,7 @@ const Button = (props) => {
    */
   const handleClick = (evt) => {
     props.updateCaretPosition();
+    
     /**
      * @type {HTMLButtonElement}
      */

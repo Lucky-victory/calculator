@@ -1,16 +1,17 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef,useEffect } from "react";
 import { CalculatorContext } from "../context/calculator";
 import { useLongPress } from "../js/hooks";
 import { Button as F7Button } from "framework7-react";
 import { parenthesesChecker } from "../js/helpers";
-
+import { Dom7} from 'framework7'
+const $$=Dom7;
 const BackspaceButton = () => {
   const { state, updateState } = useContext(CalculatorContext);
 
   const buttonRef = useRef(null);
   const funcs = ["cos(", "sin(", "log(", "in(", "tan("];
   const handleLongPress = () => {
-    console.log("long press");
+    
     updateState((prevState) => ({
       ...prevState,
       isClosedParen: true,
@@ -18,8 +19,9 @@ const BackspaceButton = () => {
       canSave: false,
     }));
   };
+const selector='#backspace-btn'
+  useLongPress(selector, handleLongPress);
 
-  useLongPress(buttonRef, handleLongPress);
   const handleClick = () => {
     /**
      * @type {string}
@@ -31,16 +33,16 @@ const BackspaceButton = () => {
       ...prevState,
       isClosedParen: isClosed,
       canSave: false,
-      currentValue: updatedValue,
+      currentValue: updatedValue, 
     }));
   };
 
   return (
     <>
-      <div className="grid-box btn-primary" ref={buttonRef}>
+      <div className="grid-box btn-primary" >
         <F7Button
-          type="button"
-          className={`btn material-icons-outlined`}
+          type="button" id={'backspace-btn'}
+          className={`btn material-icons-outlined backspace-btn`}
           onClick={handleClick}
           iconMaterial="backspace_outlined"
         ></F7Button>
