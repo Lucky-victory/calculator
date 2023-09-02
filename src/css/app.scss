@@ -174,10 +174,16 @@ border-radius: 5rem;
 position: relative;
   flex-direction: column;
   flex: 1;
-  padding-right: 0.8rem;
+  // padding-right: 0.8rem;
+  .input-wrap{
+    position: relative;
+    background: #0003;
+  }
   .input {
-    display: inline-block;
- 
+    width: 100%;
+    display: block;
+    background: #fcc;
+    position: relative;
   font-family: inherit;
   white-space: nowrap;
   resize: none;
@@ -189,10 +195,10 @@ position: relative;
   transform: translateY(0);
   border: none;
   outline: none;
-  caret-color: var(--f7-theme-color);
+  // caret-color: var(--f7-theme-color);
   text-align: right;
-  background: transparent;
-  z-index: 20;
+  // background: transparent;
+  // z-index: 20;
   &.hide{
     transform: translateY(-10rem);
   visibility: hidden;
@@ -202,6 +208,8 @@ position: relative;
     position: absolute;
     height: 100%;
     width: 2px;
+    right: 0;
+    z-index: 10;
     background: var(--f7-theme-color);
     animation: blink 1s step-end infinite;
   }

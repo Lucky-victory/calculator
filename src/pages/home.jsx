@@ -82,7 +82,7 @@ const HomePage = () => {
         break;
     }
     try {
-      console.log({ isClosed: state.isClosedParen });
+      // console.log({ isClosed: state.isClosedParen });
       autoScrollInput();
       if (valueToEvaluate === "" || !containsOperator(currentValue)) {
         setOutput(0);
@@ -124,13 +124,17 @@ const HomePage = () => {
   const input = state.inputRef.current;
   const cursorIndicator= state.cursorIndicatorRef.current;
 
-  const cursorPosition = input?.selectionStart;
+  const cursorPosition = state.cursorPosition;
+  const cursorPosition2 = state.cursorPosition;
+
   const rect=input.getBoundingClientRect()
-  const left=rect.left + cursorPosition * 10
-  cursorIndicator.style.left=left+'px'
+  const right=rect.left + (+cursorPosition) * 10
+  console.log({rect,right,cursorPosition,cursorPosition2});
+
+  cursorIndicator.style.right=`${right}px`
 
   };
-  const updateCursorPosition = (pos=-1) => {
+  const updateCursorPosition = (pos=null) => {
 
     updateState((prevState) => ({ ...prevState, cursorPosition:pos }));
   };

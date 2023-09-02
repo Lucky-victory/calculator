@@ -22,7 +22,7 @@ const SideOperatorButtons = (props) => {
             updateCursorPosition={props.updateCursorPosition}
             
             updateCursorIndicatorPosition={props.updateCursorIndicatorPosition}
-            key={crypto.randomUUID() || index}
+            key={'side-btn'+index}
             value={btnVal.value}
           />
         );

@@ -39,7 +39,7 @@ const TopOperatorButtons = () => {
             className="top-ops-btn"
             onClick={handleClick}
             data-value={val}
-            key={crypto.randomUUID() || index}
+            key={'top-btn'+index}
           >
             {val}
           </F7Button>

@@ -41,7 +41,7 @@ const MyApp = () => {
   const inputRef = useRef();
   const cursorIndicatorRef = useRef();
   const [state, setState] = useState({
-    cursorPosition: -1,
+    cursorPosition: 0,
     outputResult: 0,
     currentValue: "",
     isClosedParen: true,

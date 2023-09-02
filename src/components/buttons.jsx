@@ -30,7 +30,7 @@ const Buttons = (props) => {
             icon={btnVal?.icon}
             updateCursorPosition={props.updateCursorPosition}
             updateCursorIndicatorPosition={props.updateCursorIndicatorPosition}
-            key={crypto.randomUUID() || index}
+            key={'btn'+index}
             value={btnVal.value}
           />
         );

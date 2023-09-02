@@ -30,7 +30,7 @@ const selector='#backspace-btn'
 
       const cursorPosition = input?.selectionStart || state.cursorPosition;
       props.updateCursorPosition(cursorPosition);
-      props.updateCursorIndicatorPosition();
+      // props.updateCursorIndicatorPosition();
     
 
     /**
@@ -47,7 +47,7 @@ const selector='#backspace-btn'
         canSave: false,
         currentValue: updatedValue, 
       }));
-      input.setSelectionRange(cursorPosition - 1,cursorPosition -1)
+      input.setSelectionRange(cursorPosition - 1,cursorPosition - 1)
     }
   };
 
