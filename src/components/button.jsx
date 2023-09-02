@@ -63,7 +63,10 @@ const Button = (props) => {
           className={`btn  ${props?.icon ? "material-icons-outlined" : ""}`}
           data-value={btnValue}
         >
+          <span>
+
           {!props?.icon && btnValue}
+          </span>
         </F7Button>
       </div>
     </>

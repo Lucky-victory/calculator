@@ -24,8 +24,15 @@
   --page-bg:#fff;
   --output-color:#7f8084;
   --page-color:#213547;
-  --f7-theme-color: #04978b!important;
+  --f7-theme-color: #e48406!important;
   --f7-theme-color-rgb: 4, 151, 139 !important;
+  --btn-color:#111;
+  --btn-bg:#cacaca;
+  --btn-bg-rgb:202, 202, 202;
+  
+  // --btn-color:#fff;
+  // --btn-bg:#121212;
+  // --btn-bg-rgb:18, 18, 18;
 }
 
 body {
@@ -91,12 +98,12 @@ user-select: none;
 }
 .grid-box {
   background: var(--page-bg);
-border-radius: 5rem;
+border-radius: 1.5rem;
   &.equal-btn-box {
     grid-column: 3/5;
     color: #fff ;
-    background-color: var(--f7-theme-color);
     .equal-btn{
+      --btn-bg: var(--f7-theme-color);
   
       .dashes{
         width: 3rem;
@@ -122,21 +129,24 @@ border-radius: 5rem;
   display: block;
   padding: 0.375rem;
   height: 100%;
+  line-height: 100%;
   font-weight: 400;
   font-size: var(--btn-font-size);
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: none;
-  color: inherit;
+  color: var(--btn-color);
   border-radius: inherit;
-  
+  background: var(--btn-bg);
   
 }
 .btn-primary{
   // background: rgba(var(--f7-theme-color-rgb), 0.3);
     .btn {
       color: var(--f7-theme-color);
+    background: rgba(var(--btn-bg-rgb),0.5);
+
     }
 }
 .operators-container {
@@ -147,7 +157,8 @@ border-radius: 5rem;
   grid-row: 1/5;
   grid-column: 4;
   gap: 0.45rem;
-  
+  .btn{
+  }
 }
 
 .top-operators-container {
@@ -177,12 +188,11 @@ position: relative;
   // padding-right: 0.8rem;
   .input-wrap{
     position: relative;
-    background: #0003;
+  
   }
   .input {
     width: 100%;
     display: block;
-    background: #fcc;
     position: relative;
   font-family: inherit;
   white-space: nowrap;
@@ -197,7 +207,7 @@ position: relative;
   outline: none;
   // caret-color: var(--f7-theme-color);
   text-align: right;
-  // background: transparent;
+  background: transparent;
   // z-index: 20;
   &.hide{
     transform: translateY(-10rem);
@@ -307,8 +317,11 @@ position: relative;
 @media (prefers-color-scheme: dark) {
   :root,:root.dark, :root .dark {
     --page-color: #f3f3f3;
-    --page-bg: #213547;
+    --page-bg: #1a1a19;
     --output-color:#acafaf;
+    --btn-bg:#0a0a09;
+    --btn-bg-rgb:7, 7, 7;
+    --btn-color:#fff;
   }
   
 }
