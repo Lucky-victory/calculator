@@ -23,7 +23,7 @@ const Button = (props) => {
 
           const cursorPosition = input?.selectionStart;
           props.updateCursorPosition(cursorPosition);
-          // props.updateCursorIndicatorPosition();
+          props.updateCursorIndicatorPosition();
         
     console.log({cursorPosition});
     /**

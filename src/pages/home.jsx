@@ -125,13 +125,13 @@ const HomePage = () => {
   const cursorIndicator= state.cursorIndicatorRef.current;
 
   const cursorPosition = state.cursorPosition;
-  const cursorPosition2 = state.cursorPosition;
+  const cursorPosition2 = input.selectionStart;
 
   const rect=input.getBoundingClientRect()
-  const right=rect.left + (+cursorPosition) * 10
+  const right=rect.left + (+cursorPosition2) * 10
   console.log({rect,right,cursorPosition,cursorPosition2});
 
-  cursorIndicator.style.right=`${right}px`
+  cursorIndicator.style.left=`${right}px`
 
   };
   const updateCursorPosition = (pos=null) => {

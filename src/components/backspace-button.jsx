@@ -30,7 +30,7 @@ const selector='#backspace-btn'
 
       const cursorPosition = input?.selectionStart || state.cursorPosition;
       props.updateCursorPosition(cursorPosition);
-      // props.updateCursorIndicatorPosition();
+      props.updateCursorIndicatorPosition();
     
 
     /**

@@ -206,7 +206,7 @@ position: relative;
   border: none;
   outline: none;
   // caret-color: var(--f7-theme-color);
-  text-align: right;
+  // text-align: right;
   background: transparent;
   // z-index: 20;
   &.hide{
@@ -218,7 +218,7 @@ position: relative;
     position: absolute;
     height: 100%;
     width: 2px;
-    right: 0;
+    // right: 0;
     z-index: 10;
     background: var(--f7-theme-color);
     animation: blink 1s step-end infinite;
